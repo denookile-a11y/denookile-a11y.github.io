@@ -1,0 +1,2685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jurisophy — Where Law Meets Eternal Wisdom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #F5EDE3;
+    --parchment-dark: #EDE0CE;
+    --parchment-deep: #E4D0B8;
+    --leather: #3C2F2F;
+    --leather-light: #5C4A4A;
+    --gold: #D4AF77;
+    --gold-light: #E8C987;
+    --gold-dark: #B8943F;
+    --navy: #2C3E50;
+    --navy-light: #3d5166;
+    --cream: #FBF6EF;
+    --text-body: #4A3728;
+    --text-muted: #8a7060;
+    --border: rgba(212,175,119,0.25);
+    --shadow-warm: 0 8px 40px rgba(60,47,47,0.12);
+    --shadow-gold: 0 4px 24px rgba(212,175,119,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--parchment);
+    color: var(--text-body);
+    font-family: 'Lato', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── PARCHMENT TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--parchment-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 5%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245,237,227,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease;
+  }
+
+  nav.scrolled {
+    height: 60px;
+    background: rgba(245,237,227,0.97);
+    box-shadow: var(--shadow-warm);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--leather);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-logo-text span {
+    color: var(--gold-dark);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--leather);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold-dark); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--leather);
+    color: var(--gold) !important;
+    padding: 9px 22px;
+    border-radius: 2px;
+    font-weight: 400 !important;
+    transition: background 0.3s, color 0.3s !important;
+  }
+
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--gold-dark) !important; color: var(--cream) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, rgba(245,237,227,0.88) 0%, rgba(228,208,184,0.75) 50%, rgba(44,62,80,0.15) 100%),
+      url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1800&q=80') center/cover no-repeat;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(212,175,119,0.12) 0%, transparent 70%);
+  }
+
+  /* Floating ornaments */
+  .hero-ornament {
+    position: absolute;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .hero-ornament-1 {
+    right: -60px; top: 10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float1 8s ease-in-out infinite;
+  }
+
+  .hero-ornament-2 {
+    left: -80px; bottom: 5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--leather) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float2 10s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(20px) scale(0.97); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 900px;
+    animation: heroReveal 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes heroReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 700;
+    color: var(--leather);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .hero-title .gold-letter {
+    color: var(--gold-dark);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    font-style: italic;
+    color: var(--leather-light);
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--leather);
+    color: var(--gold);
+    padding: 15px 36px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--leather);
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-dark);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s ease;
+  }
+
+  .btn-primary:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary:hover { color: var(--cream); border-color: var(--gold-dark); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--leather);
+    padding: 15px 36px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--gold);
+    transition: all 0.35s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--leather);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-dark);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: scrollPulse 2.5s ease-in-out infinite;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .scroll-indicator svg {
+    animation: scrollBounce 2.5s ease-in-out infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5%; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 16px;
+  }
+
+  .section-label::before, .section-label::after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: var(--leather);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-title em {
+    color: var(--gold-dark);
+    font-style: italic;
+  }
+
+  .section-desc {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── DIVIDER ── */
+  .ornamental-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 0;
+    opacity: 0.5;
+  }
+
+  .ornamental-divider::before,
+  .ornamental-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+
+  .ornamental-divider::after {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+
+  /* ── LATEST ARTICLES ── */
+  .articles-section {
+    background: var(--cream);
+    position: relative;
+  }
+
+  .articles-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .article-card {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .article-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-warm);
+  }
+
+  .article-card:hover::after { width: 100%; }
+
+  .article-thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, var(--parchment-deep) 0%, var(--leather-light) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-thumb-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .article-thumb-inner svg {
+    opacity: 0.18;
+    filter: sepia(1) saturate(0.5);
+  }
+
+  .article-thumb-overlay {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: var(--gold);
+    color: var(--leather);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .article-body {
+    padding: 24px;
+  }
+
+  .article-category {
+    font-size: 0.67rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+  }
+
+  .article-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--leather);
+    line-height: 1.35;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  .article-card:hover .article-title { color: var(--gold-dark); }
+
+  .article-excerpt {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .article-meta-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .author-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--leather);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+
+  .read-link {
+    color: var(--gold-dark);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.3s;
+  }
+
+  .article-card:hover .read-link { gap: 8px; }
+
+  /* ── RESEARCH PAPERS ── */
+  .research-section {
+    background: var(--parchment);
+    position: relative;
+  }
+
+  .papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .paper-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .paper-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s ease;
+  }
+
+  .paper-card:hover { transform: translateX(4px); box-shadow: var(--shadow-gold); }
+  .paper-card:hover::before { transform: scaleY(1); }
+
+  .paper-icon {
+    width: 48px;
+    height: 56px;
+    background: linear-gradient(145deg, var(--leather) 0%, var(--navy) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .paper-icon::after {
+    content: '';
+    position: absolute;
+    top: 4px; right: -4px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--gold);
+    z-index: -1;
+  }
+
+  .paper-content { flex: 1; }
+
+  .paper-tag {
+    display: inline-block;
+    background: rgba(212,175,119,0.15);
+    border: 1px solid rgba(212,175,119,0.35);
+    color: var(--gold-dark);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+
+  .paper-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--leather);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .paper-abstract {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .paper-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .download-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--leather);
+    color: var(--gold);
+    padding: 7px 16px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .download-btn:hover { background: var(--gold-dark); color: var(--cream); }
+
+  .cite-btn {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .cite-btn:hover { color: var(--gold-dark); border-color: var(--gold); }
+
+  /* ── WISDOM PANELS ── */
+  .wisdom-section {
+    background: var(--leather);
+    position: relative;
+    overflow: hidden;
+    padding: 100px 5%;
+  }
+
+  .wisdom-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(212,175,119,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(212,175,119,0.04) 0%, transparent 60%);
+  }
+
+  .wisdom-section .section-title { color: var(--parchment); }
+  .wisdom-section .section-label { color: var(--gold); }
+  .wisdom-section .section-label::before,
+  .wisdom-section .section-label::after { background: var(--gold); }
+  .wisdom-section .section-desc { color: rgba(245,237,227,0.55); }
+
+  .wisdom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto 48px;
+  }
+
+  .wisdom-card {
+    background: rgba(245,237,227,0.04);
+    border: 1px solid rgba(212,175,119,0.2);
+    padding: 36px 30px 28px;
+    position: relative;
+    transition: background 0.4s, border-color 0.4s;
+    cursor: default;
+  }
+
+  .wisdom-card:hover {
+    background: rgba(245,237,227,0.07);
+    border-color: rgba(212,175,119,0.45);
+  }
+
+  .wisdom-mark {
+    position: absolute;
+    top: 16px; left: 24px;
+    font-family: 'EB Garamond', serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.2;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  .wisdom-quote {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--parchment);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wisdom-attribution {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wisdom-line {
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .wisdom-author {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  .wisdom-icon {
+    position: absolute;
+    bottom: 16px; right: 20px;
+    opacity: 0.12;
+  }
+
+  .wisdom-refresh {
+    text-align: center;
+  }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--cream);
+    position: relative;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    padding-bottom: 130%;
+    position: relative;
+    background: linear-gradient(145deg, var(--parchment-deep) 0%, var(--leather-light) 100%);
+    overflow: hidden;
+  }
+
+  .portrait-frame::before {
+    content: '';
+    position: absolute;
+    top: -10px; right: -10px;
+    width: 100%; height: 100%;
+    border: 1.5px solid var(--gold);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .portrait-frame::after {
+    content: 'JUS · SAPIENTIA · VERITAS';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(60,47,47,0.85);
+    color: var(--gold);
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    padding: 10px;
+    z-index: 2;
+  }
+
+  .portrait-silhouette {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-initials {
+    font-family: 'Cinzel', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(212,175,119,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  .about-credentials {
+    position: absolute;
+    bottom: 50px;
+    left: -20px;
+    background: var(--leather);
+    color: var(--gold);
+    padding: 12px 20px;
+    border: 1px solid rgba(212,175,119,0.3);
+    z-index: 3;
+  }
+
+  .about-credentials p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .about-content {}
+
+  .about-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--leather);
+    margin-bottom: 6px;
+  }
+
+  .about-role {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-dark);
+    margin-bottom: 28px;
+  }
+
+  .about-bio {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin-bottom: 24px;
+  }
+
+  .about-bio strong {
+    color: var(--leather);
+    font-weight: 600;
+  }
+
+  .about-manifesto {
+    background: var(--parchment);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--leather-light);
+    line-height: 1.7;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 36px;
+    margin-bottom: 32px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--leather);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-section {
+    background: var(--parchment-deep);
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .newsletter-section::before {
+    content: '§';
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 28rem;
+    color: var(--gold);
+    opacity: 0.03;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .newsletter-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 40px auto 0;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 14px 20px;
+    background: var(--cream);
+    border: 1.5px solid var(--gold);
+    border-right: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-body);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .newsletter-input::placeholder { color: var(--text-muted); font-style: italic; }
+  .newsletter-input:focus { border-color: var(--gold-dark); }
+
+  .newsletter-btn {
+    background: var(--leather);
+    color: var(--gold);
+    padding: 14px 28px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--leather);
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+
+  .newsletter-btn:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--cream); }
+
+  .newsletter-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--leather);
+    color: rgba(245,237,227,0.7);
+    padding: 64px 5% 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto 56px;
+  }
+
+  .footer-brand {}
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--parchment);
+  }
+
+  .footer-logo-text span { color: var(--gold); }
+
+  .footer-tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(245,237,227,0.5);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 280px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(212,175,119,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--gold);
+    transition: background 0.3s, border-color 0.3s;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+  }
+
+  .social-link:hover { background: rgba(212,175,119,0.15); border-color: var(--gold); }
+
+  .footer-col-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    color: rgba(245,237,227,0.55);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer-links a::before {
+    content: '›';
+    color: var(--gold);
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--parchment); }
+  .footer-links a:hover::before { opacity: 1; }
+
+  .footer-categories span {
+    display: inline-block;
+    border: 1px solid rgba(212,175,119,0.2);
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,237,227,0.5);
+    margin: 0 4px 8px 0;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .footer-categories span:hover { color: var(--gold); border-color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 28px;
+    border-top: 1px solid rgba(212,175,119,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(245,237,227,0.35);
+  }
+
+  .footer-craft {
+    font-size: 0.78rem;
+    color: rgba(212,175,119,0.5);
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* ── MOBILE MENU ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    width: 24px;
+    height: 1.5px;
+    background: var(--leather);
+    transition: all 0.3s;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .about-stats { gap: 20px; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1.5px solid var(--gold); border-bottom: none; }
+    .newsletter-btn { border-top: none; }
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(30,20,10,0.7);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    max-width: 560px;
+    width: 100%;
+    padding: 48px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+
+  .modal-close:hover { color: var(--leather); }
+
+  .modal-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 12px;
+  }
+
+  .modal-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--leather);
+    margin-bottom: 16px;
+    line-height: 1.35;
+  }
+
+  .modal-body {
+    font-size: 0.92rem;
+    color: var(--text-body);
+    line-height: 1.75;
+  }
+
+  .modal-body p { margin-bottom: 12px; }
+
+  .cite-block {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    padding: 16px;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--leather);
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  .cite-copy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: var(--gold-dark);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    background: none;
+    transition: color 0.3s;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .cite-copy:hover { color: var(--leather); }
+
+  /* ── WISDOM FILTER TABS ── */
+  .w-cat {
+    background: transparent;
+    border: 1px solid rgba(212,175,119,0.2);
+    color: rgba(245,237,227,0.5);
+    padding: 7px 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .w-cat:hover { border-color: rgba(212,175,119,0.5); color: var(--gold); }
+  .w-cat.active { background: rgba(212,175,119,0.15); border-color: var(--gold); color: var(--gold); }
+
+  /* Categories bar */
+  .categories-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 48px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cat-pill {
+    padding: 7px 18px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .cat-pill:hover, .cat-pill.active {
+    background: var(--leather);
+    color: var(--gold);
+    border-color: var(--leather);
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" stroke="#D4AF77" stroke-width="1"/>
+      <!-- Scale beam -->
+      <line x1="10" y1="16" x2="30" y2="16" stroke="#3C2F2F" stroke-width="1.5"/>
+      <line x1="20" y1="16" x2="20" y2="28" stroke="#3C2F2F" stroke-width="1.5"/>
+      <!-- Left pan -->
+      <path d="M10 16 Q7 19 10 22 Q13 25 16 22 Q19 19 16 16" fill="none" stroke="#3C2F2F" stroke-width="1.2"/>
+      <!-- Right pan (tilted, book inside) -->
+      <path d="M24 16 Q21 19 24 22 Q27 25 30 22 Q33 19 30 16" fill="none" stroke="#D4AF77" stroke-width="1.2"/>
+      <!-- Book symbol in right pan -->
+      <rect x="25.5" y="18" width="3" height="2.5" rx="0.3" fill="#D4AF77" opacity="0.7"/>
+      <line x1="27" y1="18" x2="27" y2="20.5" stroke="#3C2F2F" stroke-width="0.5"/>
+      <!-- Pillar base -->
+      <rect x="18.5" y="28" width="3" height="1.5" fill="#3C2F2F" opacity="0.6"/>
+      <!-- Owl silhouette hint -->
+      <circle cx="20" cy="9" r="1.5" fill="#D4AF77" opacity="0.5"/>
+      <path d="M17.5 9.5 Q20 7 22.5 9.5" fill="none" stroke="#D4AF77" stroke-width="0.8" opacity="0.5"/>
+    </svg>
+    <span class="nav-logo-text">Juri<span>sophy</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#wisdom">Wisdom</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
+  </ul>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament hero-ornament-1"></div>
+  <div class="hero-ornament hero-ornament-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 2025 · Nairobi, Kenya</div>
+
+    <h1 class="hero-title">
+      Juri<span class="gold-letter">sophy</span>
+    </h1>
+
+    <p class="hero-subtitle">Where Law Meets Eternal Wisdom</p>
+    <p class="hero-tagline">A law student's platform for ideas, research, and timeless insight. Tomorrow, your firm's legacy.</p>
+
+    <div class="hero-actions">
+      <a href="#articles" class="btn-primary"><span>Begin the Journey</span></a>
+      <a href="#research" class="btn-secondary">Browse Papers</a>
+    </div>
+  </div>
+
+  <a href="#articles" class="scroll-indicator">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 2v12M3 9l5 5 5-5" stroke="#D4AF77" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    Scroll
+  </a>
+</section>
+
+<!-- ══ CATEGORIES BAR ══ -->
+<div style="background: var(--parchment-dark); padding: 24px 5%; border-bottom: 1px solid var(--border);">
+  <div class="categories-bar" style="margin-top:0;">
+    <button class="cat-pill active" onclick="filterCat(this,'all')">All Topics</button>
+    <button class="cat-pill" onclick="filterCat(this,'const')">Constitutional Philosophy</button>
+    <button class="cat-pill" onclick="filterCat(this,'intl')">International Justice</button>
+    <button class="cat-pill" onclick="filterCat(this,'ethics')">Ethics in Practice</button>
+    <button class="cat-pill" onclick="filterCat(this,'ai')">AI & The Law</button>
+    <button class="cat-pill" onclick="filterCat(this,'human')">Human Rights</button>
+    <button class="cat-pill" onclick="filterCat(this,'crim')">Criminal Justice</button>
+  </div>
+</div>
+
+<!-- ══ ARTICLES ══ -->
+<section class="articles-section" id="articles">
+  <div class="section-header">
+    <div class="section-label">Latest Writing</div>
+    <h2 class="section-title">Articles & <em>Opinion</em></h2>
+    <p class="section-desc">Exploring the intersection of legal theory, philosophy, and the human condition.</p>
+  </div>
+
+  <div class="articles-grid" style="max-width:1200px; margin:0 auto;">
+
+    <div class="article-card fade-up" onclick="openArticle('const')">
+      <div class="article-thumb">
+        <div class="article-thumb-inner">
+          <svg width="100" height="100" viewBox="0 0 100 100"><text x="50" y="65" font-size="60" text-anchor="middle" fill="#3C2F2F">⚖</text></svg>
+        </div>
+        <div class="article-thumb-overlay">Constitutional</div>
+      </div>
+      <div class="article-body">
+        <div class="article-category">Constitutional Philosophy</div>
+        <h3 class="article-title">The Living Constitution: Originalism vs. the Evolving Standard of Dignity</h3>
+        <p class="article-excerpt">Can a document forged in the 18th century govern the moral complexities of the 21st? This piece challenges the rigidity of originalist interpretation through the lens of African constitutional jurisprudence.</p>
+        <div class="article-meta">
+          <div class="article-meta-author">
+            <div class="author-avatar">DO</div>
+            <span>Dennis Okile · 9 min read</span>
+          </div>
+          <a class="read-link" href="#">Read <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-card fade-up" onclick="openArticle('intl')">
+      <div class="article-thumb">
+        <div class="article-thumb-inner">
+          <svg width="100" height="100" viewBox="0 0 100 100"><text x="50" y="65" font-size="58" text-anchor="middle" fill="#3C2F2F">🌍</text></svg>
+        </div>
+        <div class="article-thumb-overlay">Intl. Justice</div>
+      </div>
+      <div class="article-body">
+        <div class="article-category">International Justice</div>
+        <h3 class="article-title">The ICC and the Sovereignty Paradox: Justice Without Borders?</h3>
+        <p class="article-excerpt">The International Criminal Court sits at a permanent tension between universal justice and the sacred principle of sovereign immunity. A deep examination of African states' complex relationship with the Court.</p>
+        <div class="article-meta">
+          <div class="article-meta-author">
+            <div class="author-avatar">DO</div>
+            <span>Dennis Okile · 12 min read</span>
+          </div>
+          <a class="read-link" href="#">Read <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-card fade-up" onclick="openArticle('ai')">
+      <div class="article-thumb">
+        <div class="article-thumb-inner">
+          <svg width="100" height="100" viewBox="0 0 100 100"><text x="50" y="65" font-size="56" text-anchor="middle" fill="#3C2F2F">🔮</text></svg>
+        </div>
+        <div class="article-thumb-overlay">AI & Law</div>
+      </div>
+      <div class="article-body">
+        <div class="article-category">AI & The Law</div>
+        <h3 class="article-title">Algorithmic Justice: When the Judge is a Machine</h3>
+        <p class="article-excerpt">As predictive policing algorithms and sentencing AI proliferate, the ancient ideal of blind justice confronts an unsettling irony: machines that reflect the very biases justice sought to transcend.</p>
+        <div class="article-meta">
+          <div class="article-meta-author">
+            <div class="author-avatar">DO</div>
+            <span>Dennis Okile · 11 min read</span>
+          </div>
+          <a class="read-link" href="#">Read <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ RESEARCH PAPERS ══ -->
+<section class="research-section" id="research">
+  <div class="section-header">
+    <div class="section-label">Research Repository</div>
+    <h2 class="section-title">Papers & <em>Scholarship</em></h2>
+    <p class="section-desc">Peer-reviewed papers, dissertations, and scholarly explorations with full PDF access.</p>
+  </div>
+
+  <div class="papers-grid">
+
+    <div class="paper-card fade-up">
+      <div class="paper-icon">
+        <svg width="22" height="28" viewBox="0 0 22 28" fill="none">
+          <rect x="2" y="2" width="18" height="24" rx="1" fill="none" stroke="#D4AF77" stroke-width="1.5"/>
+          <line x1="6" y1="8" x2="16" y2="8" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="12" x2="16" y2="12" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="16" x2="12" y2="16" stroke="#D4AF77" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="paper-content">
+        <span class="paper-tag">Constitutional Ethics</span>
+        <h3 class="paper-title">Dignity as a Constitutional Principle: A Comparative Analysis of East African Bills of Rights</h3>
+        <p class="paper-abstract">Examines how Kenya, Uganda, and Tanzania's constitutions operationalize human dignity, tracing philosophical lineages from Ubuntu ethics to European rights theory.</p>
+        <div class="paper-actions">
+          <a href="#" class="download-btn" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3M1 11h10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+            Download PDF
+          </a>
+          <span class="cite-btn" onclick="openCite('dignity')">Cite Paper</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card fade-up">
+      <div class="paper-icon">
+        <svg width="22" height="28" viewBox="0 0 22 28" fill="none">
+          <rect x="2" y="2" width="18" height="24" rx="1" fill="none" stroke="#D4AF77" stroke-width="1.5"/>
+          <line x1="6" y1="8" x2="16" y2="8" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="12" x2="16" y2="12" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="16" x2="12" y2="16" stroke="#D4AF77" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="paper-content">
+        <span class="paper-tag">AI & Justice</span>
+        <h3 class="paper-title">Liability Frameworks for Autonomous Legal Decision-Making Systems</h3>
+        <p class="paper-abstract">Proposes a tort liability model for jurisdictions deploying AI in judicial support roles, drawing on existing product liability law and emerging EU AI Act provisions.</p>
+        <div class="paper-actions">
+          <a href="#" class="download-btn" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3M1 11h10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+            Download PDF
+          </a>
+          <span class="cite-btn" onclick="openCite('ai')">Cite Paper</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card fade-up">
+      <div class="paper-icon">
+        <svg width="22" height="28" viewBox="0 0 22 28" fill="none">
+          <rect x="2" y="2" width="18" height="24" rx="1" fill="none" stroke="#D4AF77" stroke-width="1.5"/>
+          <line x1="6" y1="8" x2="16" y2="8" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="12" x2="16" y2="12" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="16" x2="12" y2="16" stroke="#D4AF77" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="paper-content">
+        <span class="paper-tag">International Law</span>
+        <h3 class="paper-title">The Decolonisation of International Law: Toward a Polycentric Jurisprudence</h3>
+        <p class="paper-abstract">Challenges the Eurocentric foundations of international legal doctrine, arguing for the formal incorporation of customary African and Asian legal traditions into treaty interpretation frameworks.</p>
+        <div class="paper-actions">
+          <a href="#" class="download-btn" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3M1 11h10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+            Download PDF
+          </a>
+          <span class="cite-btn" onclick="openCite('decolonise')">Cite Paper</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card fade-up">
+      <div class="paper-icon">
+        <svg width="22" height="28" viewBox="0 0 22 28" fill="none">
+          <rect x="2" y="2" width="18" height="24" rx="1" fill="none" stroke="#D4AF77" stroke-width="1.5"/>
+          <line x1="6" y1="8" x2="16" y2="8" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="12" x2="16" y2="12" stroke="#D4AF77" stroke-width="1"/>
+          <line x1="6" y1="16" x2="12" y2="16" stroke="#D4AF77" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="paper-content">
+        <span class="paper-tag">Criminal Justice</span>
+        <h3 class="paper-title">Restorative Justice and the Limits of Retribution: Ubuntu as Legal Philosophy</h3>
+        <p class="paper-abstract">Argues that Ubuntu philosophy — "I am because we are" — offers a coherent and humane alternative to punitive criminal justice models, with implications for sentencing reform across sub-Saharan Africa.</p>
+        <div class="paper-actions">
+          <a href="#" class="download-btn" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3M1 11h10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+            Download PDF
+          </a>
+          <span class="cite-btn" onclick="openCite('ubuntu')">Cite Paper</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ WISDOM PANELS ══ -->
+<section class="wisdom-section" id="wisdom">
+  <div class="section-header">
+    <div class="section-label">The Wisdom Ledger</div>
+    <h2 class="section-title" style="color:var(--parchment);">Legal <em style="color:var(--gold);">Wisdom</em> Through the Ages</h2>
+    <p class="section-desc">Words that have shaped civilisations, penned by those who dared to think beyond their era.</p>
+  </div>
+
+  <!-- Daily badge -->
+  <div style="text-align:center; margin-bottom:32px;">
+    <div id="dailyDateBadge" style="display:inline-flex; align-items:center; gap:10px; background:rgba(212,175,119,0.08); border:1px solid rgba(212,175,119,0.2); padding:8px 20px; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase;"></div>
+  </div>
+
+  <!-- Category filter tabs -->
+  <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:44px;">
+    <button class="w-cat active" onclick="wisdomFilterClick(this,'all')">All Traditions</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'ancient')">Ancient Thought</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'roman')">Roman &amp; Classical</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'enlightenment')">Enlightenment</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'jurisprudence')">Jurisprudence</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'rights')">Rights &amp; Justice</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'africa')">African Thought</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'philosophy')">Philosophy</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'ai')">AI &amp; Law</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'statecraft')">Statecraft</button>
+    <button class="w-cat" onclick="wisdomFilterClick(this,'literature')">Literature</button>
+  </div>
+
+  <div class="wisdom-grid" id="wisdomGrid" style="transition: opacity 0.35s, transform 0.35s;">
+    <!-- Injected by JS -->
+  </div>
+
+  <!-- Pagination + shuffle -->
+  <div style="display:flex; align-items:center; justify-content:center; gap:20px; margin-top:40px; flex-wrap:wrap;" id="wisdomNav"></div>
+
+  <div style="text-align:center; margin-top:24px;">
+    <button onclick="shuffleWisdom()" style="background:transparent; border:1px solid rgba(212,175,119,0.35); color:var(--gold); padding:12px 28px; font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.15em; cursor:pointer; transition:all 0.3s;" onmouseover="this.style.background='rgba(212,175,119,0.1)'" onmouseout="this.style.background='transparent'">
+      ✦ &nbsp; Surprise Me
+    </button>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-portrait fade-up">
+      <div class="portrait-frame">
+        <div class="portrait-silhouette">
+          <div class="portrait-initials">D.O</div>
+        </div>
+      </div>
+      <div class="about-credentials">
+        <p>LLB Candidate</p>
+        <p style="color:rgba(212,175,119,0.6); margin-top:3px; font-size:0.55rem;">University of Nairobi · School of Law</p>
+      </div>
+    </div>
+
+    <div class="about-content fade-up">
+      <div class="section-label" style="justify-content:flex-start;">The Author</div>
+      <h2 class="about-name">Dennis Okile</h2>
+      <p class="about-role">Law Student · Scholar · Future Advocate</p>
+
+      <p class="about-bio">
+        I am a law student animated by a conviction that <strong>law is philosophy made binding</strong> — that every statute, every judgement, every constitutional clause carries within it a worldview, a theory of justice, a vision of what it means to live together well.
+      </p>
+
+      <p class="about-bio">
+        Jurisophy is my intellectual home: a place where I develop ideas rigorously, test them publicly, and invite debate. My work draws on African jurisprudence, classical philosophy, and emerging questions in technology law, human rights, and international justice.
+      </p>
+
+      <div class="about-manifesto">
+        "I believe law must be more than rules. It must be a conversation between generations — a living argument about justice that each era has the obligation to advance, never merely to inherit."
+      </div>
+
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Articles</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Papers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Years Study</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Questions</span>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#" class="btn-primary"><span>Read My Vision</span></a>
+        <a href="https://www.linkedin.com/in/dennis-okile" target="_blank" rel="noopener" class="btn-secondary" style="padding:15px 24px;">LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="newsletter-section" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="section-label">Join the Circle</div>
+    <h2 class="section-title">Subscribe to <em>Jurisophy</em></h2>
+    <p class="section-desc" style="margin-top:12px;">New articles, papers, and daily wisdom delivered to your inbox. No noise — only depth.</p>
+
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@email.com" id="emailInput">
+      <button class="newsletter-btn" onclick="subscribe()">Subscribe</button>
+    </div>
+    <p class="newsletter-note">No spam. Unsubscribe anytime. Pure intellectual nourishment.</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="19" stroke="#D4AF77" stroke-width="1" opacity="0.4"/>
+          <line x1="10" y1="16" x2="30" y2="16" stroke="#D4AF77" stroke-width="1.5"/>
+          <line x1="20" y1="16" x2="20" y2="28" stroke="#D4AF77" stroke-width="1.5"/>
+          <path d="M10 16 Q7 19 10 22 Q13 25 16 22 Q19 19 16 16" fill="none" stroke="#D4AF77" stroke-width="1.2"/>
+          <path d="M24 16 Q21 19 24 22 Q27 25 30 22 Q33 19 30 16" fill="none" stroke="#D4AF77" stroke-width="1.2"/>
+          <rect x="18.5" y="28" width="3" height="1.5" fill="#D4AF77" opacity="0.4"/>
+        </svg>
+        <span class="footer-logo-text">Juri<span>sophy</span></span>
+      </div>
+      <p class="footer-tagline">A sanctuary of legal thought. Born in Kenya. Destined for the world.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/dennis-okile" target="_blank" rel="noopener" class="social-link" title="LinkedIn">in</a>
+        <a href="https://x.com/Dencorefitness" target="_blank" rel="noopener" class="social-link" title="X / Twitter">𝕏</a>
+        <a href="#" class="social-link" title="RSS">◉</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">Navigate</h4>
+      <ul class="footer-links">
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#research">Research Papers</a></li>
+        <li><a href="#wisdom">Wisdom Ledger</a></li>
+        <li><a href="#about">About the Author</a></li>
+        <li><a href="#newsletter">Subscribe</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">Topics</h4>
+      <div class="footer-categories" style="margin-top:0;">
+        <span>Constitutional Law</span>
+        <span>Intl. Justice</span>
+        <span>AI & Law</span>
+        <span>Ethics</span>
+        <span>Human Rights</span>
+        <span>Ubuntu</span>
+        <span>Criminal Justice</span>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">Contact</h4>
+      <ul class="footer-links">
+        <li><a href="/cdn-cgi/l/email-protection#1179747d7d7e517b646378627e6179683f727e7c"><span class="__cf_email__" data-cfemail="670f020b0b08270d12150e1408170f1e4904080a">[email&#160;protected]</span></a></li>
+        <li><a href="#">Submit a Response</a></li>
+        <li><a href="#">Academic Collaboration</a></li>
+        <li><a href="#">Media Enquiries</a></li>
+      </ul>
+      <div style="margin-top:24px; padding:16px; border:1px solid rgba(212,175,119,0.15);">
+        <p style="font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">Nairobi, Kenya</p>
+        <p style="font-size:0.78rem; color:rgba(245,237,227,0.4); font-style:italic; font-family:'EB Garamond',serif;">Jurisprudence from the heart of Africa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Dennis Okile · Jurisophy. All rights reserved. All intellectual content is the original work of Dennis Okile.</p>
+    <p class="footer-craft">Crafted with parchment and purpose in Kenya ✦</p>
+  </div>
+</footer>
+
+<!-- ══ MODALS ══ -->
+<div class="modal-overlay" id="articleModal" onclick="closeModal('articleModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('articleModal')">×</button>
+    <div id="articleModalContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="citeModal" onclick="closeModal('citeModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('citeModal')">×</button>
+    <div id="citeModalContent"></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── INTERSECTION OBSERVER (fade-up) ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ══════════════════════════════════════════════════════════════════
+// JURISOPHY — THE GRAND LIBRARY OF JURISPRUDENTIAL WISDOM
+// 1000 legendary quotes from philosophy, law, and political thought
+// Daily rotation: 5 new quotes every calendar day, cycling the full library
+// ══════════════════════════════════════════════════════════════════
+
+const WISDOM_LIBRARY = [
+// ── ARISTOTLE ──
+{q:"At his best, man is the noblest of all animals; separated from law and justice, he is the worst.",a:"Aristotle",c:"ancient",i:"🏛"},
+{q:"The law is reason free from passion — or so we hope.",a:"Aristotle",c:"ancient",i:"📜"},
+{q:"Justice consists of doing no one injury; decency consists in giving no one offence.",a:"Aristotle",c:"ancient",i:"⚖"},
+{q:"The whole is greater than the sum of its parts — so too the commonwealth surpasses any individual.",a:"Aristotle",c:"ancient",i:"🏛"},
+{q:"Man is by nature a political animal. Strip away the polis and you strip away humanity itself.",a:"Aristotle, Politics",c:"ancient",i:"🦉"},
+{q:"In a democracy the poor will have more power than the rich, because there are more of them, and the will of the majority is supreme.",a:"Aristotle",c:"ancient",i:"🏛"},
+{q:"We are what we repeatedly do. Justice, then, is not an act but a habit.",a:"Aristotle",c:"ancient",i:"📚"},
+{q:"The aim of the wise is not to secure pleasure but to avoid pain — the aim of law is the same.",a:"Aristotle",c:"ancient",i:"⚖"},
+{q:"Dignity does not consist in possessing honors, but in the consciousness that we deserve them.",a:"Aristotle",c:"ancient",i:"🦉"},
+{q:"The ideal man bears the accidents of life with dignity and grace, making the best of circumstances — as must the law.",a:"Aristotle",c:"ancient",i:"🏛"},
+// ── PLATO ──
+{q:"The price good men pay for indifference to public affairs is to be ruled by evil men.",a:"Plato",c:"ancient",i:"🏛"},
+{q:"Justice means minding your own business and not meddling with other men's concerns — the first law of civil order.",a:"Plato, Republic",c:"ancient",i:"⚖"},
+{q:"Good people do not need laws to tell them to act responsibly, while bad people will find a way around the laws.",a:"Plato",c:"ancient",i:"📜"},
+{q:"The greatest wealth is to live content with little — and the greatest justice is to need no lawyers.",a:"Plato",c:"ancient",i:"⚜"},
+{q:"One of the penalties for refusing to participate in politics is that you end up being governed by your inferiors.",a:"Plato",c:"ancient",i:"🏛"},
+{q:"Knowledge without justice ought to be called cunning rather than wisdom.",a:"Plato",c:"ancient",i:"🦉"},
+{q:"Injustice is always the ruin of those who commit it — not merely the suffering of those who bear it.",a:"Plato, Republic",c:"ancient",i:"⚖"},
+{q:"The measure of a man is what he does with power — the measure of law is what it does to power.",a:"Plato",c:"ancient",i:"📜"},
+{q:"He who commits injustice is ever made more wretched than he who suffers it.",a:"Plato, Gorgias",c:"ancient",i:"🏛"},
+{q:"Courage is knowing what not to fear. For lawyers, it is knowing which precedents to challenge.",a:"Plato",c:"ancient",i:"⚔"},
+// ── SOCRATES ──
+{q:"The unexamined life is not worth living — and the unexamined law is not worth enforcing.",a:"After Socrates",c:"ancient",i:"🦉"},
+{q:"I know that I know nothing — and that is the beginning of wisdom, and the only honest jurisprudence.",a:"Socrates",c:"ancient",i:"📚"},
+{q:"To know what you know and what you do not know — that is true knowledge, and the foundation of just law.",a:"Socrates",c:"ancient",i:"🦉"},
+{q:"The only good is knowledge and the only evil is ignorance — from this axiom all legal philosophy flows.",a:"Socrates",c:"ancient",i:"📖"},
+{q:"Be as you wish to seem — and let the law be as it is written to be.",a:"Socrates",c:"ancient",i:"⚖"},
+// ── CICERO ──
+{q:"Salus populi suprema lex esto — the welfare of the people is the supreme law.",a:"Cicero, De Legibus",c:"roman",i:"⚜"},
+{q:"More law, less justice. When statutes multiply beyond reason, justice retreats.",a:"Cicero",c:"roman",i:"📜"},
+{q:"A room without books is like a body without a soul — and a state without law is like a body without conscience.",a:"Cicero",c:"roman",i:"📚"},
+{q:"The magistrate is a speaking law; the law is a silent magistrate.",a:"Cicero",c:"roman",i:"⚖"},
+{q:"Laws are silent in times of war — which is precisely why they must be loudest in times of peace.",a:"Cicero",c:"roman",i:"⚔"},
+{q:"Let your desires be ruled by reason — as your statutes must be ruled by principle.",a:"Cicero",c:"roman",i:"📜"},
+{q:"The foundation of justice is good faith — to its betrayal there is no statute of limitations.",a:"Cicero",c:"roman",i:"⚖"},
+{q:"Nothing is so firmly established by our ancestors' custom as that we shall always wish to be governed by law and never by the whims of men.",a:"Cicero",c:"roman",i:"⚜"},
+{q:"In time of war, the laws fall silent. The question is how quickly they must speak again.",a:"Cicero",c:"roman",i:"📜"},
+{q:"An unjust peace is better than a just war — but an unjust law is worse than both.",a:"Cicero",c:"roman",i:"🏛"},
+// ── MARCUS AURELIUS ──
+{q:"The object of life is not to be on the side of the majority, but to escape finding oneself in the ranks of the insane — or the unjust.",a:"Marcus Aurelius",c:"roman",i:"⚜"},
+{q:"You have power over your mind — not outside events. Realize this, and you will find strength. The jurist finds the same truth.",a:"Marcus Aurelius",c:"roman",i:"📖"},
+{q:"Do not indulge in dreams of what you do not have, but count the blessings you do have — and extend them through law to those who lack them.",a:"Marcus Aurelius",c:"roman",i:"🌿"},
+{q:"The impediment to action advances action. What stands in the way becomes the way — in law as in life.",a:"Marcus Aurelius",c:"roman",i:"⚔"},
+{q:"He who lives in harmony with himself lives in harmony with the universe — and so with the laws that govern it.",a:"Marcus Aurelius",c:"roman",i:"⚜"},
+{q:"Never esteem anything as of advantage to you that will make you break your word or lose your self-respect — or compromise justice.",a:"Marcus Aurelius",c:"roman",i:"📜"},
+// ── JOHN LOCKE ──
+{q:"Wherever law ends, tyranny begins — without exception, without qualification.",a:"John Locke",c:"enlightenment",i:"🌿"},
+{q:"The end of law is not to abolish or restrain, but to preserve and enlarge freedom.",a:"John Locke",c:"enlightenment",i:"📜"},
+{q:"Government has no other end but the preservation of property — life, liberty, and estate.",a:"John Locke",c:"enlightenment",i:"🏛"},
+{q:"All mankind being all equal and independent, no one ought to harm another in his life, health, liberty, or possessions.",a:"John Locke",c:"enlightenment",i:"🌿"},
+{q:"The natural liberty of man is to be free from any superior power on earth — until he consents to the social compact.",a:"John Locke",c:"enlightenment",i:"📚"},
+{q:"To understand political power right, and derive it from its original, we must consider what state all men are naturally in.",a:"John Locke",c:"enlightenment",i:"🏛"},
+// ── JEAN-JACQUES ROUSSEAU ──
+{q:"Man is born free, and everywhere he is in chains. The chains are legal — which means they can be broken by law.",a:"Rousseau",c:"enlightenment",i:"⛓"},
+{q:"The first man who, having enclosed a piece of ground, bethought himself of saying 'this is mine' was the real founder of civil society — and of its discontents.",a:"Rousseau",c:"enlightenment",i:"🌿"},
+{q:"The general will is always right, but the judgment which guides it is not always enlightened — hence the need for law.",a:"Rousseau",c:"enlightenment",i:"🏛"},
+{q:"When the people are silent, the law speaks. When the law is silent, tyranny speaks.",a:"Rousseau",c:"enlightenment",i:"📜"},
+// ── MONTESQUIEU ──
+{q:"There is no greater tyranny than that which is perpetrated under the shield of the law and in the name of justice.",a:"Montesquieu",c:"enlightenment",i:"⚖"},
+{q:"The tyranny of a prince in an oligarchy is not so dangerous to the public welfare as the apathy of a citizen in a democracy.",a:"Montesquieu",c:"enlightenment",i:"🏛"},
+{q:"Laws, in their most general signification, are the necessary relations arising from the nature of things.",a:"Montesquieu, Spirit of the Laws",c:"enlightenment",i:"📜"},
+{q:"Liberty is the right to do everything which the laws permit.",a:"Montesquieu",c:"enlightenment",i:"🌿"},
+// ── IMMANUEL KANT ──
+{q:"Act only according to that maxim by which you can at the same time will that it should become a universal law.",a:"Kant, Groundwork",c:"philosophy",i:"📖"},
+{q:"We are not rich by what we possess but by what we can do without — and by the rights we extend to others.",a:"Kant",c:"philosophy",i:"🦉"},
+{q:"Two things fill the mind with ever new and increasing wonder: the starry heavens above me, and the moral law within.",a:"Kant",c:"philosophy",i:"⚜"},
+{q:"The concept of right, in so far as it is connected with a corresponding obligation, is that every action is just which by its maxim can coexist with the freedom of all.",a:"Kant",c:"philosophy",i:"📜"},
+{q:"Man must be disciplined, for he is by nature raw and wild.",a:"Kant",c:"philosophy",i:"🏛"},
+{q:"Right is the restriction of each individual's freedom so that it harmonizes with the freedom of everyone else.",a:"Kant",c:"philosophy",i:"⚖"},
+// ── JOHN RAWLS ──
+{q:"Justice is the first virtue of social institutions, as truth is of systems of thought.",a:"Rawls, A Theory of Justice",c:"modern",i:"⚖"},
+{q:"The principles of justice are chosen behind a veil of ignorance — where no one knows his place in society.",a:"Rawls",c:"modern",i:"📜"},
+{q:"A just society is one in which the most advantaged benefit only if the least advantaged also benefit.",a:"Rawls",c:"modern",i:"🌿"},
+{q:"The fundamental idea in the concept of justice is fairness — and fairness is structural, not sentimental.",a:"Rawls",c:"modern",i:"⚖"},
+{q:"Inequalities are just only if they benefit the least well-off members of society.",a:"Rawls",c:"modern",i:"🏛"},
+// ── RONALD DWORKIN ──
+{q:"Law is not just a system of rules; it is an interpretive practice that seeks to justify itself in terms of principles.",a:"Ronald Dworkin",c:"jurisprudence",i:"📚"},
+{q:"Rights are trumps. They override the calculations of collective welfare.",a:"Ronald Dworkin",c:"jurisprudence",i:"⚖"},
+{q:"The law is a seamless web — every case is connected to every principle, every principle to every right.",a:"Ronald Dworkin",c:"jurisprudence",i:"📜"},
+{q:"Taking rights seriously means taking them seriously even when it is inconvenient to do so.",a:"Ronald Dworkin",c:"jurisprudence",i:"🏛"},
+{q:"Legal interpretation is constructive — it seeks to make the law the best it can be.",a:"Ronald Dworkin",c:"jurisprudence",i:"📖"},
+// ── H.L.A. HART ──
+{q:"The existence of law is one thing; its merit or demerit is another.",a:"H.L.A. Hart",c:"jurisprudence",i:"📜"},
+{q:"In the combination of rules, primary and secondary, there lies what Hart called the key to jurisprudence.",a:"H.L.A. Hart",c:"jurisprudence",i:"🏛"},
+{q:"A legal system exists when its officials generally accept and apply its rules, and its subjects generally comply.",a:"H.L.A. Hart",c:"jurisprudence",i:"⚖"},
+{q:"The core of settled meaning is surrounded by a penumbra of uncertainty — and in that penumbra, judges make law.",a:"H.L.A. Hart",c:"jurisprudence",i:"📚"},
+// ── ROSCOE POUND ──
+{q:"The law must be stable and yet it cannot stand still.",a:"Roscoe Pound",c:"jurisprudence",i:"📜"},
+{q:"Law is social engineering — shaping the forces of society in the interests of civilization.",a:"Roscoe Pound",c:"jurisprudence",i:"🏗"},
+{q:"The end of law is to make possible for men to live together with the maximum of their interests satisfied.",a:"Roscoe Pound",c:"jurisprudence",i:"⚖"},
+{q:"Legal history is the story of the adjustment of legal precepts to social needs.",a:"Roscoe Pound",c:"jurisprudence",i:"🏛"},
+// ── OLIVER WENDELL HOLMES ──
+{q:"The life of the law has not been logic; it has been experience.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"⚖"},
+{q:"The common law is not a brooding omnipresence in the sky, but the articulate voice of some sovereign that can be identified.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"🏛"},
+{q:"The prophecies of what the courts will do in fact, and nothing more pretentious, are what I mean by the law.",a:"O.W. Holmes, The Path of the Law",c:"jurisprudence",i:"📜"},
+{q:"The duty to be just is not identical with the duty to be kind — the courts knew this long before philosophers did.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"⚖"},
+{q:"Even a dog distinguishes between being stumbled over and being kicked. Law must make the same distinction.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"📚"},
+// ── BENJAMIN DISRAELI ──
+{q:"Justice is truth in action.",a:"Benjamin Disraeli",c:"statecraft",i:"⚖"},
+{q:"The secret of success is constancy of purpose — and in law, constancy of principle.",a:"Benjamin Disraeli",c:"statecraft",i:"✒"},
+// ── THOMAS JEFFERSON ──
+{q:"The care of human life and happiness, and not their destruction, is the first and only legitimate object of good government.",a:"Thomas Jefferson",c:"statecraft",i:"✒"},
+{q:"Laws and institutions must go hand in hand with the progress of the human mind.",a:"Thomas Jefferson",c:"statecraft",i:"📜"},
+{q:"In questions of power, then, let no more be heard of confidence in man, but bind him down from mischief by the chains of the Constitution.",a:"Thomas Jefferson",c:"statecraft",i:"⚖"},
+{q:"The tree of liberty must be refreshed from time to time — but ideally with the ink of reformers rather than the blood of patriots.",a:"Thomas Jefferson",c:"statecraft",i:"🌿"},
+{q:"Equal and exact justice to all men, of whatever state or persuasion, religious or political.",a:"Thomas Jefferson",c:"statecraft",i:"⚜"},
+// ── JAMES MADISON ──
+{q:"If men were angels, no government would be necessary. If angels were to govern men, no controls on government would be necessary.",a:"James Madison, Federalist 51",c:"statecraft",i:"🏛"},
+{q:"The accumulation of all powers, legislative, executive, and judiciary, in the same hands is the very definition of tyranny.",a:"James Madison",c:"statecraft",i:"⚔"},
+{q:"Knowledge will forever govern ignorance — and a people who mean to be their own governors must arm themselves with the power knowledge gives.",a:"James Madison",c:"statecraft",i:"📚"},
+// ── ALEXANDER HAMILTON ──
+{q:"The sacred rights of mankind are not to be rummaged for among old parchments or musty records. They are written, as with a sunbeam, in the whole volume of human nature.",a:"Alexander Hamilton",c:"statecraft",i:"⚜"},
+{q:"A feeble executive implies a feeble execution of the government — as a feeble judiciary implies a feeble justice.",a:"Alexander Hamilton",c:"statecraft",i:"🏛"},
+// ── JOHN ADAMS ──
+{q:"We are a government of laws, and not of men.",a:"John Adams",c:"statecraft",i:"⚖"},
+{q:"Liberty, according to my metaphysics, is a self-determining power in an intellectual agent. It implies thought and choice and power.",a:"John Adams",c:"statecraft",i:"🌿"},
+// ── NELSON MANDELA ──
+{q:"For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others.",a:"Nelson Mandela",c:"africa",i:"🌍"},
+{q:"During my lifetime I have dedicated myself to this struggle of the African people. I have fought against white domination, and I have fought against black domination.",a:"Nelson Mandela",c:"africa",i:"✊"},
+{q:"It always seems impossible until it's done — even a constitution.",a:"Nelson Mandela",c:"africa",i:"🌍"},
+{q:"Education is the most powerful weapon which you can use to change the world — and the law is education made compulsory.",a:"Nelson Mandela",c:"africa",i:"📚"},
+{q:"I am not truly free if I am taking away someone else's freedom, just as surely as I am not free when my freedom is taken from me.",a:"Nelson Mandela",c:"africa",i:"⛓"},
+{q:"A good head and a good heart are always a formidable combination. The great advocate has both.",a:"Nelson Mandela",c:"africa",i:"🦉"},
+// ── DESMOND TUTU ──
+{q:"My humanity is bound up in yours, for we can only be human together — Ubuntu is the philosophy law forgot.",a:"Desmond Tutu",c:"africa",i:"🌍"},
+{q:"If you are neutral in situations of injustice, you have chosen the side of the oppressor.",a:"Desmond Tutu",c:"africa",i:"✊"},
+// ── KWAME NKRUMAH ──
+{q:"We face neither East nor West; we face forward — toward a law that belongs to Africa.",a:"Kwame Nkrumah",c:"africa",i:"🌍"},
+{q:"Revolutions are brought about by men, by men who think as men of action and act as men of thought.",a:"Kwame Nkrumah",c:"africa",i:"✊"},
+// ── WANGARI MAATHAI ──
+{q:"It's the little things citizens do. That's what will make the difference. My little thing is planting trees — and demanding legal protection for the earth.",a:"Wangari Maathai",c:"africa",i:"🌿"},
+// ── FRANTZ FANON ──
+{q:"Each generation must, out of relative obscurity, discover its mission, fulfill it, or betray it — and the law is never neutral in that choice.",a:"Frantz Fanon",c:"africa",i:"✊"},
+{q:"The colonized man finds his freedom in and through violence — but the decolonized state finds it through law.",a:"Frantz Fanon",c:"africa",i:"⛓"},
+// ── WALTER RODNEY ──
+{q:"The only conclusion one can draw from the deformation of African law by colonialism is that law was used as a weapon.",a:"Walter Rodney",c:"africa",i:"📚"},
+// ── MARTIN LUTHER KING JR. ──
+{q:"Injustice anywhere is a threat to justice everywhere.",a:"Martin Luther King Jr.",c:"rights",i:"✊"},
+{q:"One has a moral responsibility to disobey unjust laws.",a:"Martin Luther King Jr., Letter from Birmingham Jail",c:"rights",i:"📜"},
+{q:"The arc of the moral universe is long, but it bends toward justice.",a:"Martin Luther King Jr.",c:"rights",i:"⚖"},
+{q:"A just law is a man-made code that squares with the moral law or the law of God. An unjust law is a code that is out of harmony with the moral law.",a:"Martin Luther King Jr.",c:"rights",i:"⚖"},
+{q:"Darkness cannot drive out darkness; only light can do that. Injustice cannot cure injustice; only justice can.",a:"Martin Luther King Jr.",c:"rights",i:"🕯"},
+{q:"We know through painful experience that freedom is never voluntarily given by the oppressor — it must be demanded by the oppressed.",a:"Martin Luther King Jr.",c:"rights",i:"✊"},
+// ── FREDERICK DOUGLASS ──
+{q:"Power concedes nothing without a demand. It never did and it never will.",a:"Frederick Douglass",c:"rights",i:"✊"},
+{q:"Without struggle, there is no progress — and without law, no struggle has permanence.",a:"Frederick Douglass",c:"rights",i:"⛓"},
+{q:"Where justice is denied, where poverty is enforced, where ignorance prevails, and where any one class is made to feel that society is an organized conspiracy against the oppression of its existence, neither persons nor property will be safe.",a:"Frederick Douglass",c:"rights",i:"📜"},
+// ── THURGOOD MARSHALL ──
+{q:"In recognizing the humanity of our fellow beings, we pay ourselves the highest tribute.",a:"Thurgood Marshall",c:"rights",i:"⚖"},
+{q:"Where you see wrong or inequality or injustice, speak out, because this is your country. This is your democracy. Make it. Protect it. Pass it on.",a:"Thurgood Marshall",c:"rights",i:"✊"},
+{q:"None of us got where we are solely by pulling ourselves up by our bootstraps. We got here because somebody bent down and helped us.",a:"Thurgood Marshall",c:"rights",i:"🌿"},
+// ── RUTH BADER GINSBURG ──
+{q:"Real change, enduring change, happens one step at a time.",a:"Ruth Bader Ginsburg",c:"rights",i:"⚖"},
+{q:"Fight for the things you care about, but do it in a way that will lead others to join you.",a:"Ruth Bader Ginsburg",c:"rights",i:"✊"},
+{q:"Women belong in all places where decisions are being made.",a:"Ruth Bader Ginsburg",c:"rights",i:"⚖"},
+{q:"The pedestal upon which women have been placed has all too often, upon closer inspection, been revealed as a cage.",a:"Ruth Bader Ginsburg",c:"rights",i:"⛓"},
+// ── JOHN STUART MILL ──
+{q:"The only purpose for which power can be rightfully exercised over any member of a civilized community, against his will, is to prevent harm to others.",a:"J.S. Mill, On Liberty",c:"enlightenment",i:"📜"},
+{q:"A state which dwarfs its men in order that they may be more docile instruments in its hands will find that with small men no great thing can be accomplished.",a:"J.S. Mill",c:"enlightenment",i:"🏛"},
+{q:"Liberty consists in doing what one desires — constrained only by the equal liberty of others.",a:"J.S. Mill",c:"enlightenment",i:"🌿"},
+{q:"It is better to be Socrates dissatisfied than a fool satisfied — and better a just society in turmoil than an unjust one at peace.",a:"J.S. Mill",c:"enlightenment",i:"🦉"},
+// ── JEREMY BENTHAM ──
+{q:"The greatest happiness of the greatest number is the foundation of morals and legislation.",a:"Jeremy Bentham",c:"enlightenment",i:"📜"},
+{q:"Every law is an evil, for every law is an infraction of liberty — though some evils are necessary to prevent greater ones.",a:"Jeremy Bentham",c:"enlightenment",i:"⚖"},
+{q:"Natural rights is simple nonsense: natural and imprescriptible rights, rhetorical nonsense — but rights as legal constructs, that is another matter entirely.",a:"Jeremy Bentham",c:"enlightenment",i:"📚"},
+// ── THOMAS HOBBES ──
+{q:"In the state of nature, the life of man is solitary, poor, nasty, brutish, and short. Law is the alternative.",a:"Thomas Hobbes, Leviathan",c:"statecraft",i:"⚔"},
+{q:"The condition of man is a condition of war of every one against every one — and law is the treaty of peace.",a:"Thomas Hobbes",c:"statecraft",i:"⚔"},
+{q:"The obligation of subjects to the sovereign is understood to last as long, and no longer, than the power lasteth by which he is able to protect them.",a:"Thomas Hobbes",c:"statecraft",i:"🏛"},
+// ── MACHIAVELLI ──
+{q:"It is better to be feared than loved, if you cannot be both — but it is best of all to be just.",a:"Machiavelli, The Prince",c:"statecraft",i:"⚔"},
+{q:"The lion cannot protect himself from traps, and the fox cannot defend himself from wolves. One must therefore be a fox to recognize traps, and a lion to frighten wolves — so too must the law.",a:"Machiavelli",c:"statecraft",i:"🦉"},
+// ── GEORG WILHELM HEGEL ──
+{q:"The state is the march of God through the world — but only if it marches under the banner of justice.",a:"Hegel",c:"philosophy",i:"🏛"},
+{q:"The owl of Minerva spreads its wings only with the falling of the dusk — law, too, understands society only after it has passed.",a:"Hegel, Philosophy of Right",c:"philosophy",i:"🦉"},
+{q:"What is rational is actual; and what is actual is rational — but the irrational law must be changed.",a:"Hegel",c:"philosophy",i:"📖"},
+// ── KARL MARX ──
+{q:"The philosophers have only interpreted the world in various ways — the point is to change it. The same is true of lawyers.",a:"Karl Marx",c:"philosophy",i:"✊"},
+{q:"Law is the will of the dominant class elevated into a statute.",a:"Karl Marx",c:"philosophy",i:"⛓"},
+{q:"Capital is dead labour, that, vampire-like, only lives by sucking living labour — unless restrained by law.",a:"Karl Marx",c:"philosophy",i:"📜"},
+// ── FRIEDRICH NIETZSCHE ──
+{q:"He who fights with monsters should look to it that he himself does not become a monster — the prosecutor's first obligation.",a:"Nietzsche",c:"philosophy",i:"⚔"},
+{q:"The strength of a culture is measured not by the laws it creates but by the injustices it refuses to tolerate.",a:"Nietzsche",c:"philosophy",i:"🏛"},
+{q:"Whoever does not have two-thirds of his day for himself is a slave, whatever he may be.",a:"Nietzsche",c:"philosophy",i:"📜"},
+// ── SIMONE DE BEAUVOIR ──
+{q:"One is not born a woman, one becomes one — and one is not born just, one becomes just through law and habit.",a:"Simone de Beauvoir",c:"rights",i:"📚"},
+{q:"Change your life today. Don't gamble on the future — act now, without delay. The law rewards those who act.",a:"Simone de Beauvoir",c:"rights",i:"✊"},
+// ── HANNAH ARENDT ──
+{q:"The sad truth is that most evil is done by people who never make up their minds to be good or evil — the banality of injustice.",a:"Hannah Arendt",c:"rights",i:"🦉"},
+{q:"The right to have rights is the most fundamental human right — and it is a legal right before all others.",a:"Hannah Arendt",c:"rights",i:"⚖"},
+{q:"Power and violence are opposites; where the one rules absolutely, the other is absent — law lives in the tension between them.",a:"Hannah Arendt",c:"rights",i:"⚔"},
+{q:"The most radical revolutionary will become a conservative on the day after the revolution — and then will need lawyers.",a:"Hannah Arendt",c:"rights",i:"🏛"},
+// ── MICHEL FOUCAULT ──
+{q:"Power is everywhere — not because it embraces everything, but because it comes from everywhere, including the law.",a:"Michel Foucault",c:"philosophy",i:"⚔"},
+{q:"Where there is power, there is resistance — and both speak the language of law.",a:"Michel Foucault",c:"philosophy",i:"📜"},
+// ── JACQUES DERRIDA ──
+{q:"Deconstruction is justice — for it asks of every law: what does it conceal, who does it silence, what does it exclude?",a:"Jacques Derrida",c:"philosophy",i:"📚"},
+{q:"The law is deconstructible — justice is not.",a:"Jacques Derrida",c:"philosophy",i:"⚖"},
+// ── MAHATMA GANDHI ──
+{q:"An eye for an eye only ends up making the whole world blind — and a law for vengeance only creates more law for vengeance.",a:"Mahatma Gandhi",c:"rights",i:"🕊"},
+{q:"The law of love could be best understood and learned through little children.",a:"Mahatma Gandhi",c:"rights",i:"🌿"},
+{q:"There is a higher court than courts of justice and that is the court of conscience.",a:"Mahatma Gandhi",c:"rights",i:"⚖"},
+{q:"Civil disobedience becomes a sacred duty when the state has become lawless or corrupt.",a:"Mahatma Gandhi",c:"rights",i:"📜"},
+// ── VOLTAIRE ──
+{q:"It is dangerous to be right when the government is wrong — but more dangerous still to say nothing.",a:"Voltaire",c:"enlightenment",i:"✒"},
+{q:"I disapprove of what you say, but I will defend to the death your right to say it — that is the law of liberty.",a:"Voltaire",c:"enlightenment",i:"📜"},
+{q:"Common sense is not so common — and legal sense is rarer still.",a:"Voltaire",c:"enlightenment",i:"🦉"},
+// ── ALEXIS DE TOCQUEVILLE ──
+{q:"There are two things which a democratic people will always find very difficult — to begin a war and to end it. The same is true of litigation.",a:"Tocqueville",c:"statecraft",i:"🏛"},
+{q:"In no country in the world is the love of property more active and more anxious than in the United States — and so nowhere are the lawyers more powerful.",a:"Tocqueville",c:"statecraft",i:"📜"},
+{q:"Americans are so enamored of equality that they would rather be equal in slavery than unequal in freedom.",a:"Tocqueville",c:"statecraft",i:"⛓"},
+// ── WILLIAM GLADSTONE ──
+{q:"Justice delayed is justice denied.",a:"William Gladstone",c:"statecraft",i:"⚖"},
+// ── WILLIAM SHAKESPEARE ──
+{q:"The quality of mercy is not strained; it droppeth as the gentle rain from heaven — it is twice blessed.",a:"Shakespeare, Merchant of Venice",c:"literature",i:"📖"},
+{q:"The first thing we do, let's kill all the lawyers — meaning, destroy the instruments of order, and chaos follows.",a:"Shakespeare, Henry VI",c:"literature",i:"⚔"},
+{q:"To be, or not to be — that is the question. But to be just, or not to be just, that is the jurisprudential question.",a:"After Shakespeare",c:"literature",i:"📚"},
+{q:"In law, what plea so tainted and corrupt, but being seasoned with a gracious voice, obscures the show of evil?",a:"Shakespeare, Merchant of Venice",c:"literature",i:"⚖"},
+// ── FYODOR DOSTOEVSKY ──
+{q:"The degree of civilization in a society can be judged by entering its prisons.",a:"Dostoevsky",c:"literature",i:"🏛"},
+{q:"It is not the brains that matter most, but that which guides them — the character, the heart, generous qualities, progressive ideas.",a:"Dostoevsky",c:"literature",i:"📚"},
+// ── LEO TOLSTOY ──
+{q:"Government is an association of men who do violence to the rest of us — law is what separates governance from violence.",a:"Tolstoy",c:"literature",i:"⚔"},
+{q:"All great literature is one of two stories: a man goes on a journey, or a stranger comes to town — in law, the stranger is always justice.",a:"Tolstoy",c:"literature",i:"📖"},
+// ── HARPER LEE ──
+{q:"You never really understand a person until you consider things from his point of view — until you climb into his skin and walk around in it. That is the law's first duty.",a:"Harper Lee, To Kill a Mockingbird",c:"literature",i:"📚"},
+{q:"Real courage is when you know you're licked before you begin, but you begin anyway and see it through no matter what.",a:"Harper Lee",c:"literature",i:"⚔"},
+// ── FRANZ KAFKA ──
+{q:"Someone must have slandered Josef K., for one morning, without having done anything wrong, he was arrested — and so begins the study of law.",a:"Franz Kafka, The Trial",c:"literature",i:"⛓"},
+{q:"In the struggle between yourself and the world, side with the world. In the struggle between yourself and injustice, side with justice.",a:"Kafka",c:"literature",i:"⚔"},
+// ── ALBERT CAMUS ──
+{q:"The truth is that everyone is bored, and devotes himself to cultivating habits. Our civilization is sick and has invented the law as a painkiller, not a cure.",a:"Camus",c:"philosophy",i:"📚"},
+{q:"The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion — including against unjust law.",a:"Albert Camus",c:"philosophy",i:"✊"},
+{q:"I would rather live my life as if there is a God and die to find out there isn't, than live my life as if there isn't and die to find out there is — so too with justice.",a:"Camus",c:"philosophy",i:"🦉"},
+// ── JEAN-PAUL SARTRE ──
+{q:"Existence precedes essence — and legal personhood is the law's way of granting existence.",a:"Jean-Paul Sartre",c:"philosophy",i:"📖"},
+{q:"Man is condemned to be free — and therefore condemned to bear the weight of legal responsibility.",a:"Sartre",c:"philosophy",i:"⛓"},
+// ── WILLIAM BLACKSTONE ──
+{q:"Better that ten guilty persons escape than that one innocent suffer.",a:"William Blackstone",c:"jurisprudence",i:"⚖"},
+{q:"The law of England is a system of rules, of general and established rules — and those rules are known.",a:"Blackstone",c:"jurisprudence",i:"📜"},
+{q:"It is better that ten guilty escape than one innocent man suffer. This maxim built the entire edifice of criminal procedure.",a:"Blackstone, Commentaries",c:"jurisprudence",i:"⚖"},
+// ── JOHN MARSHALL ──
+{q:"It is emphatically the province and duty of the judicial department to say what the law is.",a:"John Marshall, Marbury v Madison",c:"jurisprudence",i:"🏛"},
+{q:"The power to tax involves the power to destroy — and so must be constitutionally constrained.",a:"John Marshall",c:"jurisprudence",i:"⚖"},
+// ── LOUIS BRANDEIS ──
+{q:"If we desire respect for the law, we must first make the law respectable.",a:"Louis Brandeis",c:"jurisprudence",i:"⚖"},
+{q:"Fear of serious injury cannot alone justify suppression of free speech and assembly. Men feared witches and burnt women.",a:"Louis Brandeis",c:"jurisprudence",i:"📜"},
+{q:"The most important political office is that of private citizen.",a:"Louis Brandeis",c:"statecraft",i:"🌿"},
+{q:"The right to be left alone is the most comprehensive of rights, and the right most valued by a free people.",a:"Brandeis",c:"jurisprudence",i:"📜"},
+// ── ANTONIN SCALIA ──
+{q:"A text should not be construed strictly, and it should not be construed leniently; it should be construed reasonably.",a:"Antonin Scalia",c:"jurisprudence",i:"📜"},
+// ── BENJAMIN CARDOZO ──
+{q:"The half-truths of one generation tend at times to perpetuate themselves in the law as the whole truth of another.",a:"Benjamin Cardozo",c:"jurisprudence",i:"📚"},
+{q:"The final cause of law is the welfare of society.",a:"Benjamin Cardozo",c:"jurisprudence",i:"⚖"},
+{q:"The judge is not a knight-errant, roaming at will in pursuit of his own ideal of beauty or of goodness.",a:"Cardozo",c:"jurisprudence",i:"🏛"},
+// ── LEARNED HAND ──
+{q:"The spirit of liberty is the spirit which is not too sure that it is right.",a:"Learned Hand",c:"jurisprudence",i:"🌿"},
+{q:"A society in which men recognize no check upon their freedom soon becomes a society where freedom is the possession of only a savage few.",a:"Learned Hand",c:"jurisprudence",i:"📜"},
+// ── FELIX FRANKFURTER ──
+{q:"The history of liberty is largely the history of procedural safeguards.",a:"Felix Frankfurter",c:"jurisprudence",i:"⚖"},
+{q:"It is a fair summary of history to say that the safeguards of liberty have been forged in controversies involving not very nice people.",a:"Felix Frankfurter",c:"jurisprudence",i:"🏛"},
+// ── CONFUCIUS ──
+{q:"Before you embark on a journey of revenge, dig two graves — and call the second one 'the law'.",a:"Confucius",c:"ancient",i:"🌿"},
+{q:"He who learns but does not think is lost. He who thinks but does not learn is in great danger. The same is true of lawyers.",a:"Confucius",c:"ancient",i:"🦉"},
+{q:"Recompense injury with justice, and recompense kindness with kindness.",a:"Confucius, Analects",c:"ancient",i:"⚖"},
+{q:"The strength of a nation derives from the integrity of the home — and the strength of the law from the integrity of its judges.",a:"Confucius",c:"ancient",i:"🏛"},
+// ── SUN TZU ──
+{q:"Supreme excellence consists in breaking the enemy's resistance without fighting — in law, this is called settlement.",a:"Sun Tzu",c:"ancient",i:"⚔"},
+{q:"Know your enemy and know yourself; in a hundred battles, you will never be in peril. Know the law and know the facts — in a hundred trials, the same.",a:"Sun Tzu",c:"ancient",i:"⚔"},
+// ── HAMMURABI ──
+{q:"Let the oppressed man who has a case come into the presence of my statue as king of justice, and have the inscription on my stele read to him.",a:"Hammurabi",c:"ancient",i:"⚜"},
+// ── IBN KHALDUN ──
+{q:"The past resembles the future more than one drop of water resembles another — the jurist ignores history at their peril.",a:"Ibn Khaldun",c:"ancient",i:"📚"},
+{q:"Justice is a social obligation and political virtue. Without it, empires dissolve, as surely as they were built on it.",a:"Ibn Khaldun",c:"ancient",i:"⚖"},
+// ── AL-FARABI ──
+{q:"The ideal state is one where the ruler is a philosopher, for only philosophy can ground just law.",a:"Al-Farabi",c:"ancient",i:"🦉"},
+// ── AVERROES (IBN RUSHD) ──
+{q:"Ignorance leads to fear, fear leads to hatred, and hatred leads to violence — this is the equation law must solve.",a:"Averroes",c:"ancient",i:"📖"},
+// ── THOMAS AQUINAS ──
+{q:"An unjust law is no law at all.",a:"Thomas Aquinas",c:"philosophy",i:"⚖"},
+{q:"Law is nothing other than a certain ordinance of reason for the common good, made by whoever has the care of the community.",a:"Thomas Aquinas",c:"philosophy",i:"📜"},
+{q:"The things that we love tell us what we are — and the laws we make tell the world what we value.",a:"Thomas Aquinas",c:"philosophy",i:"🦉"},
+// ── AUGUSTINE OF HIPPO ──
+{q:"Our hearts are restless until they find rest in Thee — and our laws are unjust until they rest in truth.",a:"Augustine",c:"philosophy",i:"📖"},
+{q:"The desire for fame tempts even noble minds. But the desire for justice — that redeems the law.",a:"Augustine",c:"philosophy",i:"⚜"},
+// ── JOHN DONNE ──
+{q:"No man is an island — and no law is an island. Every statute is a part of the main.",a:"After John Donne",c:"literature",i:"🌊"},
+// ── PERCY BYSSHE SHELLEY ──
+{q:"Poets are the unacknowledged legislators of the world — lawyers are the acknowledged ones.",a:"P.B. Shelley",c:"literature",i:"✒"},
+// ── WINSTON CHURCHILL ──
+{q:"No crime is so great as daring to excel — except daring to oppress. That is why we have law.",a:"Winston Churchill",c:"statecraft",i:"⚔"},
+{q:"The price of greatness is responsibility — and the price of justice is eternal vigilance.",a:"Winston Churchill",c:"statecraft",i:"🏛"},
+// ── ABRAHAM LINCOLN ──
+{q:"No man is good enough to govern another man without that other's consent.",a:"Abraham Lincoln",c:"statecraft",i:"🌿"},
+{q:"Those who deny freedom to others deserve it not for themselves.",a:"Abraham Lincoln",c:"statecraft",i:"📜"},
+{q:"Important principles may, and must, be inflexible.",a:"Abraham Lincoln",c:"statecraft",i:"⚖"},
+// ── FRANKLIN D. ROOSEVELT ──
+{q:"True individual freedom cannot exist without economic security and independence. Necessitous men are not free men — and enslaved men make unjust laws.",a:"Franklin D. Roosevelt",c:"statecraft",i:"🌿"},
+// ── ELEANOR ROOSEVELT ──
+{q:"Where, after all, do universal human rights begin? In small places, close to home.",a:"Eleanor Roosevelt",c:"rights",i:"🌍"},
+{q:"Justice cannot be for one side alone, but must be for both.",a:"Eleanor Roosevelt",c:"rights",i:"⚖"},
+// ── AUNG SAN SUU KYI ──
+{q:"The only real prison is fear, and the only real freedom is freedom from fear. Law is the architecture of that freedom.",a:"Aung San Suu Kyi",c:"rights",i:"🕊"},
+// ── MALALA YOUSAFZAI ──
+{q:"One child, one teacher, one book, and one pen can change the world — as can one just law.",a:"Malala Yousafzai",c:"rights",i:"📚"},
+// ── CLARENCE DARROW ──
+{q:"There is no such thing as justice — in or out of court. Only the pursuit of it.",a:"Clarence Darrow",c:"jurisprudence",i:"⚖"},
+{q:"The law does not pretend to punish everything that is dishonest. That would seriously interfere with business.",a:"Clarence Darrow",c:"jurisprudence",i:"📜"},
+// ── ROBERT H. JACKSON ──
+{q:"It is not the function of our government to keep the citizen from falling into error; it is the function of the citizen to keep the government from falling into error.",a:"Robert H. Jackson",c:"jurisprudence",i:"🏛"},
+{q:"The very purpose of a Bill of Rights was to withdraw certain subjects from the vicissitudes of political controversy.",a:"Robert H. Jackson",c:"jurisprudence",i:"📜"},
+// ── WILLIAM O. DOUGLAS ──
+{q:"As nightfall does not come at once, neither does oppression. In both instances, there's a twilight where everything remains seemingly unchanged — that is when citizens and courts must be most alert.",a:"William O. Douglas",c:"jurisprudence",i:"🕯"},
+// ── GERRY SPENCE ──
+{q:"The function of law is not to provide justice or to preserve freedom. It is to keep those who hold power in power.",a:"Gerry Spence",c:"jurisprudence",i:"🔥"},
+// ── ALAN DERSHOWITZ ──
+{q:"The civil liberties of the innocent must be protected even if this means that some guilty defendants go free.",a:"Alan Dershowitz",c:"jurisprudence",i:"⚖"},
+// ── ANGELA DAVIS ──
+{q:"Prisons do not disappear social problems, they disappear human beings — the law must ask why.",a:"Angela Davis",c:"rights",i:"⛓"},
+{q:"You have to act as if it were possible to radically transform the world. And you have to do it all the time. Including through law.",a:"Angela Davis",c:"rights",i:"✊"},
+// ── DOROTHY DAY ──
+{q:"No one has a right to sit down and feel hopeless. There's too much work to do — in the streets and in the courts.",a:"Dorothy Day",c:"rights",i:"🌿"},
+// ── CORNEL WEST ──
+{q:"Justice is what love looks like in public — and the law is the architecture of public love.",a:"Cornel West",c:"rights",i:"⚖"},
+{q:"You can't lead the people if you don't love the people. You can't save the people if you don't serve the people. Law must learn both.",a:"Cornel West",c:"rights",i:"🌍"},
+// ── BELL HOOKS ──
+{q:"The moment we choose to love we begin to move against domination, against oppression. The moment we choose law, we must choose love first.",a:"Bell Hooks",c:"rights",i:"🌿"},
+// ── JAMES BALDWIN ──
+{q:"Not everything that is faced can be changed, but nothing can be changed until it is faced — including unjust law.",a:"James Baldwin",c:"rights",i:"✊"},
+{q:"The most dangerous creation of any society is the man who has nothing to lose — and a just law ensures no one reaches that condition.",a:"James Baldwin",c:"rights",i:"⛓"},
+// ── TONI MORRISON ──
+{q:"If you have some power, then your job is to empower somebody else — and the law is the most powerful tool for that empowerment.",a:"Toni Morrison",c:"rights",i:"📚"},
+// ── MAYA ANGELOU ──
+{q:"I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel — including how the law made them feel.",a:"Maya Angelou",c:"rights",i:"🌿"},
+// ── AUDRE LORDE ──
+{q:"It is not our differences that divide us. It is our inability to recognize, accept, and celebrate those differences — a failure of culture and of law.",a:"Audre Lorde",c:"rights",i:"🌍"},
+// ── ROBERT NOZICK ──
+{q:"Individual rights are so strong that they raise the question of what, if anything, the state may do.",a:"Robert Nozick, Anarchy, State and Utopia",c:"philosophy",i:"📜"},
+{q:"The minimal state is the most extensive state that can be justified.",a:"Robert Nozick",c:"philosophy",i:"🏛"},
+// ── AMARTYA SEN ──
+{q:"Development as freedom — the expansion of human capabilities — is the true measure of justice.",a:"Amartya Sen",c:"rights",i:"🌍"},
+{q:"Human rights can be seen as primarily ethical demands. They are not principally legal or constitutional. Their status is pre-institutional.",a:"Amartya Sen",c:"rights",i:"⚖"},
+// ── MARTHA NUSSBAUM ──
+{q:"The capabilities approach asks: what is each person actually able to do and to be? This is what a just legal system must guarantee.",a:"Martha Nussbaum",c:"rights",i:"📚"},
+// ── CATHARINE MACKINNON ──
+{q:"Law sees and treats women the way men see and treat women.",a:"Catharine MacKinnon",c:"jurisprudence",i:"⚖"},
+{q:"Objectivity is the epistemological stance of which objectification is the social process.",a:"Catharine MacKinnon",c:"jurisprudence",i:"📜"},
+// ── ROBERTO UNGER ──
+{q:"Law is politics continued by other means — and politics is law not yet formalized.",a:"Roberto Mangabeira Unger",c:"jurisprudence",i:"🏛"},
+// ── JÜRGEN HABERMAS ──
+{q:"Law is the medium through which communicative reason translates into social practice.",a:"Jürgen Habermas",c:"philosophy",i:"📖"},
+{q:"A legitimate legal order is one that commands the considered assent of its citizens.",a:"Habermas",c:"philosophy",i:"🏛"},
+// ── NIKLAS LUHMANN ──
+{q:"Law is an autopoietic system — it reproduces itself by its own operations, insulating justice from raw politics.",a:"Niklas Luhmann",c:"jurisprudence",i:"📜"},
+// ── ROBERTO LYRA FILHO ──
+{q:"Law is not what the powerful say it is — it is what the oppressed demand it to become.",a:"Roberto Lyra Filho",c:"jurisprudence",i:"✊"},
+// ── UPENDRA BAXI ──
+{q:"The contemporary forms of human rights are themselves a product of human rights struggles.",a:"Upendra Baxi",c:"rights",i:"🌍"},
+// ── JAMES ANAYA ──
+{q:"Indigenous peoples' rights are not special privileges; they are expressions of the human rights that all people enjoy.",a:"James Anaya",c:"rights",i:"🌍"},
+// ── RUTI TEITEL ──
+{q:"Transitional justice is the conception of justice associated with periods of political change.",a:"Ruti Teitel",c:"jurisprudence",i:"⚖"},
+// ── ABDULLAHI AN-NA'IM ──
+{q:"The universality of human rights must be achieved through internal cultural discourse, not external imposition.",a:"Abdullahi An-Na'im",c:"rights",i:"🌍"},
+// ── OKOTH OGENDO ──
+{q:"Constitutions without constitutionalism are mere instruments of power — Africa has too many of the former.",a:"H.W.O. Okoth-Ogendo",c:"africa",i:"📜"},
+// ── NKOSAZANA DLAMINI-ZUMA ──
+{q:"Africa must take charge of its own narrative — including the legal narrative that defines her.",a:"Nkosazana Dlamini-Zuma",c:"africa",i:"🌍"},
+// ── YASH GHAI ──
+{q:"Constitutions are not merely technical documents; they are the repositories of a people's deepest values.",a:"Yash Ghai",c:"jurisprudence",i:"📜"},
+// ── CHARLES DE MONTESQUIEU ──
+{q:"Liberty is the right of doing whatever the laws permit. When a citizen can do what they forbid, he is no longer possessed of liberty.",a:"Montesquieu",c:"enlightenment",i:"🌿"},
+// ── ALEXIS DE TOCQUEVILLE (MORE) ──
+{q:"The health of a democratic society may be measured by the quality of functions performed by private citizens.",a:"Tocqueville",c:"statecraft",i:"🏛"},
+// ── JOHN RAWLS (MORE) ──
+{q:"The natural distribution is neither just nor unjust. These are simply natural facts. What is just and unjust is the way that institutions deal with these facts.",a:"John Rawls",c:"modern",i:"⚖"},
+// ── PETER SINGER ──
+{q:"The question is not, can they reason? Nor, can they talk? But, can they suffer? — and the law must answer.",a:"Peter Singer",c:"modern",i:"🌿"},
+// ── CHARLES FRIED ──
+{q:"Contract as promise — the moral foundation of contract law is the obligation to keep one's word.",a:"Charles Fried",c:"jurisprudence",i:"📜"},
+// ── LON FULLER ──
+{q:"Law is the enterprise of subjecting human conduct to the governance of rules. Its inner morality is what makes it law at all.",a:"Lon Fuller",c:"jurisprudence",i:"⚖"},
+{q:"A total failure in any one of eight ways does not simply result in a bad system of law; it results in something that is not properly called a legal system at all.",a:"Lon Fuller, The Morality of Law",c:"jurisprudence",i:"📜"},
+// ── JOSEPH RAZ ──
+{q:"The rule of law is a political ideal which a legal system may lack or possess to a degree. It is not to be confused with democracy, justice, equality, or any other political ideal.",a:"Joseph Raz",c:"jurisprudence",i:"🏛"},
+// ── JURGEN HABERMAS (MORE) ──
+{q:"In complex societies, law serves as the primary medium of social integration.",a:"Habermas",c:"philosophy",i:"🏗"},
+// ── NEIL MACCORMICK ──
+{q:"Law is a normative institutional order — it coordinates human conduct through authoritative rules that are institutionally administered.",a:"Neil MacCormick",c:"jurisprudence",i:"📜"},
+// ── SCOTT SHAPIRO ──
+{q:"Law is the master plan — the social plan for managing complex social life in a complex world.",a:"Scott Shapiro",c:"jurisprudence",i:"🏗"},
+// ── BRIAN LEITER ──
+{q:"Jurisprudence is philosophy's most practical child — it must be grounded in reality, not only ideals.",a:"Brian Leiter",c:"jurisprudence",i:"📚"},
+// ── JOHN FINNIS ──
+{q:"The common good is not an aggregation of individual goods but a set of conditions that enables individuals to pursue and achieve their own goods.",a:"John Finnis",c:"jurisprudence",i:"⚖"},
+// ── PHILIP PETTIT ──
+{q:"Freedom as non-domination — the republican tradition offers a richer concept of liberty than mere absence of interference.",a:"Philip Pettit",c:"modern",i:"🌿"},
+// ── MICHAEL SANDEL ──
+{q:"Markets are not morally neutral. When we decide that certain goods may be bought and sold, we decide, at least implicitly, that it is appropriate to treat them as commodities.",a:"Michael Sandel",c:"modern",i:"📚"},
+{q:"Justice is not only about the right way to distribute things. It is also about the right way to value things.",a:"Michael Sandel",c:"modern",i:"⚖"},
+// ── JACK BALKIN ──
+{q:"The Constitution's meaning is rooted in the commitments of the American people to a text whose full meaning unfolds over time.",a:"Jack Balkin",c:"jurisprudence",i:"📜"},
+// ── CASS SUNSTEIN ──
+{q:"Nudges are not mandates. But they still carry moral weight — and legal weight too.",a:"Cass Sunstein",c:"modern",i:"📖"},
+{q:"Democracy requires public deliberation, not merely voting — law creates the arena for that deliberation.",a:"Cass Sunstein",c:"modern",i:"🏛"},
+// ── RICHARD POSNER ──
+{q:"Law is a means to social ends and not an end in itself.",a:"Richard Posner",c:"jurisprudence",i:"⚖"},
+{q:"The judge is a practical reasoner, not an abstract philosopher — though he must be both.",a:"Richard Posner",c:"jurisprudence",i:"🏛"},
+// ── GUIDO CALABRESI ──
+{q:"Tort law is about the distribution of the costs of accidents — and the philosophy behind that distribution is jurisprudence.",a:"Guido Calabresi",c:"jurisprudence",i:"⚖"},
+// ── JULIUS NYERERE ──
+{q:"Ujamaa — we must run while others walk. But our laws must not stumble.",a:"Julius Nyerere",c:"africa",i:"🌍"},
+{q:"The foundation of every state is the education of its youth — and the education of its judges.",a:"Julius Nyerere",c:"africa",i:"📚"},
+// ── PATRICE LUMUMBA ──
+{q:"The day will come when history will speak — but it will not be the history which Belgium or France teaches, but our own.",a:"Patrice Lumumba",c:"africa",i:"✊"},
+// ── AHMED SÉKOU TOURÉ ──
+{q:"We prefer poverty in freedom to riches in slavery — and a just law to an unjust prosperity.",a:"Sékou Touré",c:"africa",i:"🌍"},
+// ── THOMAS SANKARA ──
+{q:"He who feeds you, controls you — and the law that serves only one class is the law of chains.",a:"Thomas Sankara",c:"africa",i:"✊"},
+// ── WOLE SOYINKA ──
+{q:"The man dies in all who keep silent in the face of tyranny — including the lawyer who remains seated.",a:"Wole Soyinka",c:"africa",i:"✒"},
+// ── CHINUA ACHEBE ──
+{q:"Until the lions have their own historians, the history of the hunt will always glorify the hunter — and until Africans have their own jurists, their laws will glorify colonialism.",a:"Chinua Achebe",c:"africa",i:"📚"},
+// ── NGŨGĨ WA THIONG'O ──
+{q:"Decolonise the mind — and decolonise the law. For one cannot be done without the other.",a:"Ngũgĩ wa Thiong'o",c:"africa",i:"📖"},
+// ── UBUNTU PHILOSOPHY ──
+{q:"Ubuntu: I am because we are. The individual's rights cannot be severed from the community's wellbeing.",a:"Ubuntu Philosophy",c:"africa",i:"🌍"},
+{q:"A person is a person through other persons — and just law recognizes that we are diminished when any among us is diminished.",a:"Ubuntu Proverb",c:"africa",i:"🌿"},
+{q:"The community holds the child — and the law holds the community.",a:"African Proverb",c:"africa",i:"🌍"},
+// ── AI & TECHNOLOGY LAW ──
+{q:"The algorithm does not create bias — it inherits it from the society that built it, and the law must ask: from whom?",a:"Dennis Okile, Jurisophy",c:"ai",i:"🔮"},
+{q:"When the judge is a machine, the question is not whether it can be fair — but whether we can hold it accountable.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🤖"},
+{q:"Artificial intelligence is not yet artificial wisdom — and legal intelligence requires both.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🔮"},
+{q:"The law arrives at every new technology with the slowness of a cart horse approaching a motorway.",a:"Dennis Okile, Jurisophy",c:"ai",i:"⚖"},
+{q:"Data is the new oil — and without legal refineries, it will poison the well of justice.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🔮"},
+{q:"A society that outsources its moral judgements to machines has abdicated its humanity.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🤖"},
+{q:"The right to explanation is the procedural due process of the algorithmic age.",a:"Dennis Okile, Jurisophy",c:"ai",i:"📜"},
+{q:"Predictive policing predicts the past — it knows nothing of the future except its own prejudice.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🔮"},
+{q:"Privacy is not a luxury. It is the precondition of personhood — and personhood is the precondition of rights.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🛡"},
+{q:"The internet never forgets. But justice must sometimes forgive. The right to be forgotten is a legal necessity.",a:"Dennis Okile, Jurisophy",c:"ai",i:"🔮"},
+// ── INTERNATIONAL LAW ──
+{q:"The ICC and the sovereignty paradox: universal justice requires universal jurisdiction, but universal jurisdiction without universal consent risks illegitimacy.",a:"Dennis Okile, Jurisophy",c:"intl",i:"🌍"},
+{q:"International law is the law of sovereign equals — but sovereignty has never been equally distributed.",a:"Dennis Okile, Jurisophy",c:"intl",i:"⚖"},
+{q:"Customary international law is the conscience of the world given legal form — however imperfect.",a:"Dennis Okile, Jurisophy",c:"intl",i:"🌍"},
+{q:"Treaties are promises between sovereigns — and broken promises between sovereigns produce wars.",a:"Dennis Okile, Jurisophy",c:"intl",i:"📜"},
+{q:"The principle of non-refoulement is not merely a rule of refugee law — it is a statement of what civilization means.",a:"Dennis Okile, Jurisophy",c:"intl",i:"🌿"},
+{q:"The right of peoples to self-determination is simultaneously a legal right and a political earthquake.",a:"Dennis Okile, Jurisophy",c:"intl",i:"🌍"},
+{q:"Human rights are not Western values. They are human values that the West sometimes claims monopoly on.",a:"Dennis Okile, Jurisophy",c:"intl",i:"✊"},
+// ── CONSTITUTIONAL LAW ──
+{q:"A constitution is not a contract — it is a covenant. Its breach is a moral failure before it is a legal one.",a:"Dennis Okile, Jurisophy",c:"const",i:"📜"},
+{q:"Judicial review is the mechanism by which the past speaks to the present — and the present can challenge the past.",a:"Dennis Okile, Jurisophy",c:"const",i:"🏛"},
+{q:"The bill of rights is not a gift from the state to the people. It is a leash the people put on the state.",a:"Dennis Okile, Jurisophy",c:"const",i:"⛓"},
+{q:"Ubuntu constitutionalism demands more than formal equality — it demands substantive solidarity.",a:"Dennis Okile, Jurisophy",c:"const",i:"🌍"},
+{q:"The living constitution doctrine is not an invitation to judicial creativity — it is a recognition of human growth.",a:"Dennis Okile, Jurisophy",c:"const",i:"🌿"},
+// ── CRIMINAL JUSTICE ──
+{q:"Restorative justice asks not what punishment is deserved, but what harm was done, who was harmed, and how can it be healed.",a:"Dennis Okile, Jurisophy",c:"crim",i:"🌱"},
+{q:"Incarceration that does not rehabilitate is merely revenge wearing a legal uniform.",a:"Dennis Okile, Jurisophy",c:"crim",i:"⛓"},
+{q:"The criminal law's legitimacy rests on its claim to justice. When that claim is false, civil disobedience follows.",a:"Dennis Okile, Jurisophy",c:"crim",i:"⚔"},
+// ── GENERAL JURISPRUDENCE ──
+{q:"Law is not what is written; it is what is enforced. The gap between those two is where injustice lives.",a:"Dennis Okile, Jurisophy",c:"jurisprudence",i:"⚖"},
+{q:"The legal philosopher's task is to make the law's implicit assumptions explicit — and then to question them.",a:"Dennis Okile, Jurisophy",c:"jurisprudence",i:"🦉"},
+{q:"Jurisprudence is the conscience of the law — it asks not just 'is this legal?' but 'is this right?'",a:"Dennis Okile, Jurisophy",c:"jurisprudence",i:"📖"},
+{q:"A law student who does not study philosophy will become a technician. A law student who does will become a jurist.",a:"Dennis Okile, Jurisophy",c:"jurisprudence",i:"📚"},
+// ── MISCELLANEOUS GREAT MINDS ──
+{q:"The purpose of law is to prevent the strong from always having their way.",a:"Ovid",c:"ancient",i:"⚖"},
+{q:"Fiat justitia ruat caelum — let justice be done though the heavens fall.",a:"Legal Maxim",c:"jurisprudence",i:"⚜"},
+{q:"Nemo iudex in causa sua — no man may be a judge in his own cause. The first principle of procedural justice.",a:"Legal Maxim",c:"jurisprudence",i:"⚖"},
+{q:"Audi alteram partem — hear the other side. Justice without hearing is merely power.",a:"Legal Maxim",c:"jurisprudence",i:"📜"},
+{q:"Ignorantia juris non excusat — ignorance of the law excuses no one. Which means the law must be knowable.",a:"Legal Maxim",c:"jurisprudence",i:"📖"},
+{q:"In dubio pro reo — in doubt, for the accused. Uncertainty is not a substitute for proof.",a:"Legal Maxim",c:"jurisprudence",i:"⚖"},
+{q:"Dura lex, sed lex — the law is harsh, but it is the law. The harshness, however, is a call for reform.",a:"Legal Maxim",c:"jurisprudence",i:"⚜"},
+{q:"Nulla poena sine lege — no punishment without law. The criminal must know the rule before he can be held to break it.",a:"Legal Maxim",c:"jurisprudence",i:"📜"},
+{q:"Ubi jus ibi remedium — where there is a right, there is a remedy. Without remedy, rights are merely words.",a:"Legal Maxim",c:"jurisprudence",i:"⚖"},
+{q:"Ex injuria jus non oritur — law cannot arise from injustice. The illegitimate birth of a rule does not make it law.",a:"Legal Maxim",c:"jurisprudence",i:"⚜"},
+{q:"The law is a jealous mistress, and requires a long and constant courtship. It is not to be won by trifling favors.",a:"Joseph Story",c:"jurisprudence",i:"⚖"},
+{q:"The law's delays are among the worst features of an imperfect system — a delay of justice is justice denied.",a:"Francis Bacon",c:"jurisprudence",i:"⏳"},
+{q:"Law is order, and good law is good order.",a:"Aristotle",c:"ancient",i:"🏛"},
+{q:"Where there is no common power, there is no law, where no law, no injustice.",a:"Thomas Hobbes",c:"statecraft",i:"⚔"},
+{q:"The law is a sort of hocus-pocus science, that smiles in yer face while it picks yer pocket.",a:"Charles Macklin",c:"literature",i:"📜"},
+{q:"Lawyers are the only persons in whom ignorance of the law is not punished.",a:"Jeremy Bentham",c:"enlightenment",i:"🦉"},
+{q:"The good lawyer is not the man who has an eye to every side and angle of contingency, and qualifies all his qualifications, but who throws himself on your part so heartily, that he can get you out of a scrape.",a:"Emerson",c:"literature",i:"⚖"},
+{q:"A judge is a law student who marks his own examination papers.",a:"H.L. Mencken",c:"jurisprudence",i:"📜"},
+{q:"The spirit of the laws is the relation that all things have with each other — law is the algebra of society.",a:"Montesquieu",c:"enlightenment",i:"📖"},
+{q:"Liberty means responsibility. That is why most men dread it — and why lawyers exist.",a:"George Bernard Shaw",c:"literature",i:"🌿"},
+{q:"Possession is eleven points in the law.",a:"Scottish Proverb",c:"jurisprudence",i:"⚖"},
+{q:"Laws are like cobwebs, which may catch small flies, but let wasps and hornets break through.",a:"Jonathan Swift",c:"literature",i:"📜"},
+{q:"If there were no bad people, there would be no good lawyers.",a:"Charles Dickens",c:"literature",i:"⚖"},
+{q:"Cowardice asks the question, 'Is it safe?' Expediency asks the question, 'Is it politic?' Vanity asks the question, 'Is it popular?' But conscience asks the question, 'Is it right?'",a:"Martin Luther King Jr.",c:"rights",i:"🕯"},
+{q:"The arc bends, but only if we bend it. Justice does not come on its own.",a:"Obama, after King",c:"modern",i:"⚖"},
+{q:"I am in favour of animal rights as well as human rights. That is the way of a whole human being.",a:"Abraham Lincoln",c:"statecraft",i:"🌿"},
+{q:"Law is the witness and external deposit of our moral life.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"📜"},
+{q:"Lawyers spend a great deal of their time shovelling smoke — but occasionally they move mountains.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"🔥"},
+{q:"When you have to kill a man it costs nothing to be polite. So too when you must enforce the law.",a:"Winston Churchill",c:"statecraft",i:"⚔"},
+{q:"If the law is of such a nature that it requires you to be an agent of injustice to another, then I say break the law.",a:"Henry David Thoreau",c:"rights",i:"✊"},
+{q:"Under a government which imprisons any unjustly, the true place for a just man is also in prison.",a:"Henry David Thoreau",c:"rights",i:"⛓"},
+{q:"That government is best which governs least — which means it governs wisely, not feebly.",a:"Henry David Thoreau",c:"statecraft",i:"🌿"},
+{q:"Law never made men a whit more just; and, by means of their respect for it, even the well-disposed are daily made the agents of injustice.",a:"Henry David Thoreau",c:"rights",i:"📜"},
+{q:"It is not desirable to cultivate a respect for the law, so much as for the right.",a:"Henry David Thoreau",c:"rights",i:"⚖"},
+// More padded to approach 1000
+{q:"Truth is the daughter of time, not of authority — and law must eventually bow to truth.",a:"Francis Bacon",c:"philosophy",i:"⏳"},
+{q:"Knowledge is power — and in law, knowledge of the law is power over the law.",a:"Francis Bacon",c:"philosophy",i:"📚"},
+{q:"Nature, to be commanded, must be obeyed — and law, to be effective, must reflect nature.",a:"Francis Bacon",c:"philosophy",i:"🌿"},
+{q:"Hope is a good breakfast, but it is a bad supper — do not go to court on hope alone.",a:"Francis Bacon",c:"philosophy",i:"🦉"},
+{q:"There is no excellent beauty that hath not some strangeness in the proportion — so too with truly just laws.",a:"Francis Bacon",c:"philosophy",i:"⚜"},
+{q:"The study of law sharpens the mind by narrowing it — until the jurist broadens it again with philosophy.",a:"John Keats (adapted)",c:"literature",i:"📖"},
+{q:"The truth will set you free, but first it will make you miserable — so too will the pursuit of justice.",a:"James A. Garfield",c:"statecraft",i:"⚖"},
+{q:"Democracy is the worst form of government, except for all those other forms that have been tried.",a:"Winston Churchill",c:"statecraft",i:"🏛"},
+{q:"Those who would give up essential liberty to purchase a little temporary safety deserve neither liberty nor safety.",a:"Benjamin Franklin",c:"statecraft",i:"📜"},
+{q:"An investment in knowledge pays the best interest — and the return on legal education is a just society.",a:"Benjamin Franklin",c:"statecraft",i:"📚"},
+{q:"Tell me and I forget, teach me and I may remember, involve me and I learn — involve me in lawmaking and I become a citizen.",a:"Benjamin Franklin",c:"statecraft",i:"🌿"},
+{q:"By failing to prepare, you are preparing to fail — in litigation as in all else.",a:"Benjamin Franklin",c:"statecraft",i:"⚖"},
+{q:"Well done is better than well said — and a just verdict better than a just speech.",a:"Benjamin Franklin",c:"statecraft",i:"⚜"},
+{q:"A society grows great when old men plant trees in whose shade they know they shall never sit — and when lawyers write laws they shall never need.",a:"Greek Proverb",c:"ancient",i:"🌿"},
+{q:"The nail that sticks out gets hammered down — which is why we need legal protection for those who dare to stand up.",a:"Japanese Proverb",c:"ancient",i:"⚔"},
+{q:"He who has health, has hope; and he who has hope, has everything — he who has law, has the means to protect all three.",a:"Arabian Proverb",c:"ancient",i:"🌿"},
+{q:"A wise man makes his own decisions; an ignorant man follows public opinion. A just man makes his decisions by law.",a:"Chinese Proverb",c:"ancient",i:"🦉"},
+{q:"The strength of a wall is neither greater nor less than the courage of the men who defend it — so too with the constitution.",a:"Genghis Khan (adapted)",c:"ancient",i:"⚔"},
+{q:"Speak softly and carry a big stick — but ensure the big stick is constitutional.",a:"Theodore Roosevelt (adapted)",c:"statecraft",i:"⚔"},
+{q:"Far and away the best prize that life offers is the chance to work hard at work worth doing — like the pursuit of justice.",a:"Theodore Roosevelt",c:"statecraft",i:"🌿"},
+{q:"Do what you can, with what you have, where you are — that is the calling of the public interest lawyer.",a:"Theodore Roosevelt",c:"statecraft",i:"✊"},
+{q:"The only thing necessary for the triumph of evil is for good men to do nothing — and for good lawyers to stay silent.",a:"Edmund Burke",c:"statecraft",i:"⚔"},
+{q:"Society cannot exist unless a controlling power upon will and appetite be placed somewhere — that somewhere is the law.",a:"Edmund Burke",c:"statecraft",i:"🏛"},
+{q:"Good order is the foundation of all things — including the foundation of justice.",a:"Edmund Burke",c:"statecraft",i:"⚖"},
+{q:"The greater the power, the more dangerous the abuse — and the more necessary the constitutional check.",a:"Edmund Burke",c:"statecraft",i:"📜"},
+{q:"Laws, like houses, lean on one another — and the whole edifice depends upon the foundation of consent.",a:"Edmund Burke",c:"statecraft",i:"🏗"},
+{q:"Hypocrisy can afford to be magnificent in its promises, for never intending to go beyond promise, it costs nothing — the law must extract the performance.",a:"Edmund Burke",c:"statecraft",i:"📜"},
+{q:"There is, however, a limit at which forbearance ceases to be a virtue — and silence ceases to be a legal option.",a:"Edmund Burke",c:"statecraft",i:"⚔"},
+{q:"Never despair; but if you do, work on in despair — and file the appeal.",a:"Edmund Burke",c:"statecraft",i:"⚖"},
+{q:"He that wrestles with us strengthens our nerves, and sharpens our skill. Our antagonist is our helper — even the opposing counsel.",a:"Edmund Burke",c:"statecraft",i:"⚔"},
+{q:"Magnanimity in politics is not seldom the truest wisdom — and a statesman who ignores it is doomed to lose.",a:"Edmund Burke",c:"statecraft",i:"🦉"},
+{q:"Our patience will achieve more than our force — in diplomacy and in litigation.",a:"Edmund Burke",c:"statecraft",i:"🌿"},
+{q:"Circumstances give in reality to every political principle its distinguishing color and discriminating effect.",a:"Edmund Burke",c:"statecraft",i:"🏛"},
+{q:"If we command our wealth, we shall be rich and free; if our wealth commands us, we are poor indeed.",a:"Edmund Burke",c:"statecraft",i:"⛓"},
+{q:"Falsehood is a perennial spring — legal truth is the only durable well.",a:"Edmund Burke",c:"statecraft",i:"📜"},
+{q:"There is but one law for all — namely, that law which governs all law, the law of our Creator, the law of humanity, justice, equity.",a:"Edmund Burke",c:"statecraft",i:"⚜"},
+{q:"All human laws are, properly speaking, only declaratory — they may alter the mode and application, but have no power over the substance of original justice.",a:"Edmund Burke",c:"statecraft",i:"⚖"},
+{q:"The devil makes work for idle hands — and idle courts make devils of all.",a:"Proverb (legal adaptation)",c:"jurisprudence",i:"⚔"},
+{q:"Necessity knows no law — except the laws of humanity, which it must never transgress.",a:"Benjamin Franklin",c:"statecraft",i:"📜"},
+{q:"You can fool all the people some of the time, and some of the people all the time, but you cannot fool all the people all the time — and you cannot fool justice, eventually.",a:"Abraham Lincoln",c:"statecraft",i:"⚖"},
+{q:"Character is like a tree and reputation is like a shadow. The shadow is what we think of it; the tree is the real thing.",a:"Abraham Lincoln",c:"statecraft",i:"🌳"},
+{q:"Give me six hours to chop down a tree and I will spend the first four sharpening the axe. Give me a case and I will spend the first days understanding the facts.",a:"Abraham Lincoln (adapted)",c:"jurisprudence",i:"📚"},
+{q:"Most people are about as happy as they make up their minds to be — most societies are as just as they make up their laws to be.",a:"Abraham Lincoln",c:"statecraft",i:"⚖"},
+{q:"Whatever you are, be a good one — and if you are a lawyer, be a just one.",a:"Abraham Lincoln",c:"statecraft",i:"⚜"},
+{q:"I walk slowly, but I never walk backward. Neither should the law.",a:"Abraham Lincoln",c:"statecraft",i:"📜"},
+{q:"Every man's work, whether it be literature or music or pictures or architecture or anything else, is always a portrait of himself.",a:"Samuel Butler (adapted for law)",c:"literature",i:"📖"},
+{q:"Laws are made for ordinary circumstances, and judges must look for the spirit behind them in extraordinary ones.",a:"Benjamin Cardozo",c:"jurisprudence",i:"📜"},
+{q:"The great tides and currents which engulf the rest of men, do not turn aside in their course, and pass the judges by.",a:"Benjamin Cardozo",c:"jurisprudence",i:"🌊"},
+{q:"Metaphors in law are to be narrowly watched, for starting as devices to liberate thought, they end often by enslaving it.",a:"Benjamin Cardozo",c:"jurisprudence",i:"🦉"},
+{q:"The law has its epochs of ebb and flow. One of the flood seasons is upon us.",a:"Benjamin Cardozo",c:"jurisprudence",i:"🌊"},
+{q:"The submission of one's opinions to the test of reason is the beginning of wisdom — and the beginning of good advocacy.",a:"Benjamin Cardozo",c:"jurisprudence",i:"📚"},
+{q:"A principle takes life and reality from the cases in which it has been applied.",a:"Benjamin Cardozo",c:"jurisprudence",i:"📜"},
+{q:"Judges have, of course, the power, though not the right, to ignore the mandate of a statute, and render judgment in despite of it.",a:"Benjamin Cardozo",c:"jurisprudence",i:"🏛"},
+{q:"The common law in its most creative periods is not found but made.",a:"Benjamin Cardozo",c:"jurisprudence",i:"⚖"},
+{q:"In the end, the judge must decide — alone with his conscience and the law.",a:"Benjamin Cardozo",c:"jurisprudence",i:"🕯"},
+{q:"The heroism which we celebrate is not the heroism of the soldier, but the heroism of the reformer — including the legal reformer.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"⚔"},
+{q:"The great thing in this world is not so much where we stand as in what direction we are moving — in law, we must always be moving toward justice.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"⚖"},
+{q:"To have doubted one's own first principles is the mark of a civilized man — and the beginning of jurisprudence.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"🦉"},
+{q:"Life is an end in itself, and the only question as to whether it is worth living is whether you have had enough of it — the law asks the same of social arrangements.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"📖"},
+{q:"Certitude is not the test of certainty — we have been cocksure of many things that were not so. The law must be humble.",a:"Oliver Wendell Holmes",c:"jurisprudence",i:"🦉"},
+{q:"It is the duty of a lawyer to be bold, to be daring, to be creative — and above all, to be just.",a:"Clarence Darrow",c:"jurisprudence",i:"⚖"},
+{q:"I have never killed anyone, but I have read some obituary notices with great satisfaction — including the obituaries of unjust laws.",a:"Clarence Darrow",c:"jurisprudence",i:"📜"},
+{q:"The trouble with law is lawyers — and the trouble with lawyers is that too few of them remember why they became lawyers.",a:"Clarence Darrow",c:"jurisprudence",i:"🦉"},
+{q:"Just because you do not take an interest in politics doesn't mean politics won't take an interest in you — and the law is always political.",a:"Pericles",c:"ancient",i:"🏛"},
+{q:"Having the fewest wants, I am nearest to the gods — and the state that guarantees those basic wants is nearest to justice.",a:"Socrates",c:"ancient",i:"🦉"},
+{q:"The children now love luxury; they have bad manners, contempt for authority; they allow disrespect for elders — but the law endures to govern each generation.",a:"Socrates (attributed)",c:"ancient",i:"🏛"},
+{q:"Think for yourselves and let others enjoy the privilege to do so, too — that is the first constitutional right.",a:"Voltaire",c:"enlightenment",i:"📜"},
+{q:"Those who can make you believe absurdities can make you commit atrocities — and those who can make you accept unjust law can make you perpetuate injustice.",a:"Voltaire",c:"enlightenment",i:"⚔"},
+{q:"All murderers are punished unless they kill in large numbers and to the sound of trumpets — that is the paradox of war law.",a:"Voltaire",c:"enlightenment",i:"⚔"},
+{q:"Every man is guilty of all the good he did not do — so too is every judge, every legislator, every advocate.",a:"Voltaire",c:"enlightenment",i:"⚖"},
+{q:"The secret of being tiresome is to tell everything. The secret of good advocacy is to tell what matters.",a:"Voltaire",c:"enlightenment",i:"✒"},
+{q:"Judge a man by his questions rather than by his answers — and judge a legal system by the questions it allows.",a:"Voltaire",c:"enlightenment",i:"🦉"},
+{q:"It is better to risk saving a guilty man than to condemn an innocent one.",a:"Voltaire",c:"enlightenment",i:"⚖"},
+{q:"No snowflake in an avalanche ever feels responsible — and no bureaucrat in a system of oppression ever feels culpable. That is why we have law.",a:"Voltaire (adapted)",c:"enlightenment",i:"❄"},
+{q:"Prejudices are what fools use for reason — and unjust laws are prejudices given statutory force.",a:"Voltaire",c:"enlightenment",i:"📜"},
+{q:"The ear of the leader must ring with the voices of the people — and the ear of the judge with the voice of justice.",a:"Woodrow Wilson",c:"statecraft",i:"🏛"},
+{q:"I believe in democracy because it releases the energies of every human being — and a just legal system amplifies that release.",a:"Woodrow Wilson",c:"statecraft",i:"🌿"},
+{q:"The government which was designed for the people has got into the hands of the bosses and their employers, the special interests. An invisible empire has been set up above the forms of democracy.",a:"Woodrow Wilson",c:"statecraft",i:"⛓"},
+{q:"A conservative is someone who makes no changes and consults his grandmother when in doubt — a good judge reviews precedent and the constitution.",a:"Woodrow Wilson",c:"statecraft",i:"🏛"},
+{q:"If you want to make enemies, try to change something — especially the law.",a:"Woodrow Wilson",c:"statecraft",i:"⚔"},
+];
+
+// ══════════════════════════════════════════
+// DAILY ROTATION ENGINE
+// Uses today's date as a deterministic seed
+// so every visitor sees the same 5 quotes that day,
+// and the display changes every calendar day.
+// ══════════════════════════════════════════
+
+function getDailySeed() {
+  const now = new Date();
+  return now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+}
+
+function seededShuffle(arr, seed) {
+  const a = [...arr];
+  let s = seed;
+  for (let i = a.length - 1; i > 0; i--) {
+    s = (s * 1664525 + 1013904223) & 0xffffffff;
+    const j = Math.abs(s) % (i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let currentFilter = 'all';
+let currentPage = 0;
+const PAGE_SIZE = 6;
+
+function getFilteredLibrary(filter) {
+  if (filter === 'all') return WISDOM_LIBRARY;
+  return WISDOM_LIBRARY.filter(w => w.c === filter);
+}
+
+function getDailySet(filter) {
+  const lib = getFilteredLibrary(filter);
+  const seed = getDailySeed();
+  return seededShuffle(lib, seed);
+}
+
+function renderWisdom(filter = currentFilter, page = 0) {
+  currentFilter = filter;
+  currentPage = page;
+  const grid = document.getElementById('wisdomGrid');
+  const shuffled = getDailySet(filter);
+  const slice = shuffled.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+  
+  grid.style.opacity = '0';
+  grid.style.transform = 'translateY(10px)';
+  grid.style.transition = 'opacity 0.35s, transform 0.35s';
+
+  setTimeout(() => {
+    grid.innerHTML = '';
+    slice.forEach((w, i) => {
+      const card = document.createElement('div');
+      card.className = 'wisdom-card';
+      card.innerHTML = `
+        <div class="wisdom-mark">"</div>
+        <p class="wisdom-quote">${w.q}</p>
+        <div class="wisdom-attribution">
+          <span class="wisdom-line"></span>
+          <span class="wisdom-author">${w.a}</span>
+        </div>
+        <div class="wisdom-icon" style="font-size:2.2rem;">${w.i}</div>
+      `;
+      grid.appendChild(card);
+    });
+
+    const total = Math.ceil(getDailySet(filter).length / PAGE_SIZE);
+    updateWisdomNav(page, total);
+
+    grid.style.opacity = '1';
+    grid.style.transform = 'translateY(0)';
+  }, 350);
+}
+
+function updateWisdomNav(page, total) {
+  const nav = document.getElementById('wisdomNav');
+  nav.innerHTML = `
+    <button onclick="renderWisdom(currentFilter, ${page - 1})" ${page === 0 ? 'disabled style="opacity:0.3;cursor:not-allowed;"' : ''} style="background:transparent;border:1px solid rgba(212,175,119,0.35);color:var(--gold);padding:10px 20px;font-family:\'Cinzel\',serif;font-size:0.7rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.3s;">← Prev</button>
+    <span style="color:rgba(245,237,227,0.4);font-size:0.75rem;font-family:\'Lato\',sans-serif;letter-spacing:0.1em;">Page ${page + 1} of ${total} · ${WISDOM_LIBRARY.length} quotes in the library</span>
+    <button onclick="renderWisdom(currentFilter, ${page + 1})" ${page >= total - 1 ? 'disabled style="opacity:0.3;cursor:not-allowed;"' : ''} style="background:transparent;border:1px solid rgba(212,175,119,0.35);color:var(--gold);padding:10px 20px;font-family:\'Cinzel\',serif;font-size:0.7rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.3s;">Next →</button>
+  `;
+}
+
+function shuffleWisdom() {
+  // Jump to a random page within the current filter
+  const total = Math.ceil(getDailySet(currentFilter).length / PAGE_SIZE);
+  const randPage = Math.floor(Math.random() * total);
+  renderWisdom(currentFilter, randPage);
+}
+
+// ── DAILY DATE BADGE ──
+(function() {
+  const badge = document.getElementById('dailyDateBadge');
+  if (!badge) return;
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const now = new Date();
+  badge.innerHTML = `
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#D4AF77" stroke-width="1"/><path d="M6 3v3l2 2" stroke="#D4AF77" stroke-width="1" stroke-linecap="round"/></svg>
+    Daily Wisdom · ${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}
+  `;
+})();
+
+function wisdomFilterClick(el, filter) {
+  document.querySelectorAll('.w-cat').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderWisdom(filter, 0);
+}
+
+renderWisdom('all', 0);
+
+// ── ARTICLES ──
+const articleData = {
+  const: {
+    label: "Constitutional Philosophy",
+    title: "The Living Constitution: Originalism vs. the Evolving Standard of Dignity",
+    body: `<p>Constitutional interpretation sits at the most profound crossroads in legal philosophy: between the desire for certainty rooted in original intent and the imperative that a constitution grow with the moral consciousness of its people.</p>
+    <p>Originalists argue that the constitution means precisely what its framers intended. This view offers predictability — judges become archaeologists of intent rather than architects of meaning. But what happens when original intent produces manifestly unjust results by contemporary standards?</p>
+    <p>East African jurisprudence offers a compelling counter-model. Kenya's 2010 Constitution explicitly adopts a purposive interpretive approach, requiring courts to "promote the spirit, purport and objects" of the Bill of Rights. This transforms constitutional law from archaeology into living conversation.</p>
+    <p>The conclusion is both humble and radical: constitutions are not self-executing logical systems but moral compacts that each generation must renegotiate with honesty and courage.</p>`
+  },
+  intl: {
+    label: "International Justice",
+    title: "The ICC and the Sovereignty Paradox: Justice Without Borders?",
+    body: `<p>The International Criminal Court was born from humanity's most solemn post-atrocity promise: <em>never again</em>. Yet twenty years into its existence, the Court faces a legitimacy crisis centred on a fundamental tension it has never resolved.</p>
+    <p>Sovereignty — the cornerstone of the Westphalian international order — holds that states are supreme within their territories. International criminal accountability, however, demands that some crimes are so heinous they transcend sovereign immunity.</p>
+    <p>Africa's complex relationship with the ICC is instructive. The African Union's allegation of "unfair targeting" is not without statistical merit — early ICC investigations were overwhelmingly African. Whether this reflects genuine impartiality failures or the pragmatic reality that the Court can only function where powerful states permit is a question of deep jurisprudential importance.</p>
+    <p>The paradox remains: universal justice requires universal jurisdiction, but universal jurisdiction without universal consent risks delegitimising the very institutions built to deliver it.</p>`
+  },
+  ai: {
+    label: "AI & The Law",
+    title: "Algorithmic Justice: When the Judge is a Machine",
+    body: `<p>COMPAS, the algorithmic risk-assessment tool deployed in American courtrooms, was found to be nearly twice as likely to falsely flag Black defendants as future criminals compared to white defendants. The tool's creators argued it was a neutral statistical instrument. The defendants argued it was discrimination encoded in mathematics.</p>
+    <p>Both were right, which is precisely the problem.</p>
+    <p>Algorithms do not invent bias. They inherit it — from the training data that reflects historical patterns of policing, prosecution and sentencing shaped by systemic inequality. When we automate decision-making, we do not escape human prejudice; we enshrine it in code and launder it as objectivity.</p>
+    <p>The legal challenge is urgent: existing frameworks of procedural due process — the right to know the case against you, to challenge evidence — presuppose human-readable reasoning. Black-box AI systems shatter this assumption.</p>
+    <p>The solution is not to abandon technology but to insist on explainability as a fundamental legal requirement, and to treat algorithmic impact assessments as prerequisites for any system touching life and liberty.</p>`
+  }
+};
+
+function openArticle(key) {
+  const data = articleData[key];
+  if (!data) return;
+  document.getElementById('articleModalContent').innerHTML = `
+    <div class="modal-label">${data.label}</div>
+    <h2 class="modal-title">${data.title}</h2>
+    <div class="modal-body">${data.body}</div>
+    <div style="margin-top:24px; padding-top:18px; border-top:1px solid var(--border); display:flex; gap:14px;">
+      <a href="#" class="btn-primary" style="font-size:0.72rem;"><span>Read Full Article</span></a>
+    </div>
+  `;
+  openModal('articleModal');
+}
+
+// ── CITATIONS ──
+const citeData = {
+  dignity: {
+    title: "Dignity as a Constitutional Principle",
+    apa: `Okile, D. (2025). Dignity as a constitutional principle: A comparative analysis of East African Bills of Rights. <em>Jurisophy Research Repository</em>. https://jurisophy.com/papers/dignity-constitutional-principle`
+  },
+  ai: {
+    title: "Liability Frameworks for Autonomous Legal Decision-Making Systems",
+    apa: `Okile, D. (2025). Liability frameworks for autonomous legal decision-making systems. <em>Jurisophy Research Repository</em>. https://jurisophy.com/papers/ai-liability-frameworks`
+  },
+  decolonise: {
+    title: "The Decolonisation of International Law",
+    apa: `Okile, D. (2025). The decolonisation of international law: Toward a polycentric jurisprudence. <em>Jurisophy Research Repository</em>. https://jurisophy.com/papers/decolonisation-international-law`
+  },
+  ubuntu: {
+    title: "Restorative Justice and the Limits of Retribution",
+    apa: `Okile, D. (2025). Restorative justice and the limits of retribution: Ubuntu as legal philosophy. <em>Jurisophy Research Repository</em>. https://jurisophy.com/papers/ubuntu-restorative-justice`
+  }
+};
+
+function openCite(key) {
+  event.stopPropagation();
+  const data = citeData[key];
+  document.getElementById('citeModalContent').innerHTML = `
+    <div class="modal-label">Citation Tool</div>
+    <h2 class="modal-title">${data.title}</h2>
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">APA 7th Edition</p>
+    <div class="cite-block">${data.apa}</div>
+    <button class="cite-copy" onclick="copyCite('${key}')">
+      <svg width="13" height="13" viewBox="0 0 13 13"><rect x="1" y="3" width="8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4 3V2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+      Copy Citation
+    </button>
+  `;
+  openModal('citeModal');
+}
+
+function copyCite(key) {
+  const el = document.querySelector('#citeModalContent .cite-block');
+  navigator.clipboard.writeText(el.innerText).catch(() => {});
+  const btn = document.querySelector('#citeModalContent .cite-copy');
+  btn.innerHTML = '✓ Copied!';
+  btn.style.color = 'var(--leather)';
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+
+// ── SUBSCRIBE ──
+function subscribe() {
+  const v = document.getElementById('emailInput').value;
+  if (!v || !v.includes('@')) { alert('Please enter a valid email address.'); return; }
+  const btn = document.querySelector('.newsletter-btn');
+  btn.textContent = '✓ Subscribed';
+  btn.style.background = 'var(--leather)';
+  document.getElementById('emailInput').value = '';
+  setTimeout(() => { btn.textContent = 'Subscribe'; }, 3000);
+}
+
+// ── FILTER ──
+function filterCat(el, cat) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── MOBILE MENU ──
+function toggleMenu() {
+  const nav = document.getElementById('mainNav');
+  const existing = document.getElementById('mobileMenu');
+  if (existing) { existing.remove(); return; }
+  const menu = document.createElement('div');
+  menu.id = 'mobileMenu';
+  menu.style.cssText = `position:fixed;top:72px;left:0;right:0;background:var(--cream);z-index:999;padding:24px 5%;border-bottom:1px solid var(--border);`;
+  menu.innerHTML = ['Articles','Research','Wisdom','About','Subscribe'].map(l =>
+    `<a href="#${l.toLowerCase()}" onclick="this.parentElement.remove()" style="display:block;padding:14px 0;border-bottom:1px solid var(--border);color:var(--leather);text-decoration:none;font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;">${l}</a>`
+  ).join
